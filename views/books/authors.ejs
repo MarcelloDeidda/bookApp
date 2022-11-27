@@ -1,0 +1,13 @@
+<%- include("partials/head") %>
+  <div class="container my-5 pt-5">
+    <h1 class="display-4 text-center mb-5">List of Authors</h1>
+    <div class="row">
+      <%for (let author of authors) {%><a class="col-4 btn py-4" href="authors/<%=author%>">
+          <h2 class="display-6">
+            <%=author%>
+          </h2>
+        </a>
+        <%}%>
+    </div>
+  </div>
+  <%- include("partials/footer") %>

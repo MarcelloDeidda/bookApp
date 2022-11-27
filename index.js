@@ -39,7 +39,14 @@ app.get("/books/authors", async (req, res) => {
     const books = await Book.find({});
     const authorList = books.map(book => book.author);
     const authors = [...new Set(authorList.sort())];
-    res.send(authors);
+    res.render("books/authors", {authors});
+})
+
+// GET authors/author: show autor details
+app.get("/books/authors/:author", async (req, res) => {
+    const { author } = req.params;
+    const booksByAuthor = await Book.find({ author });
+    res.render("books/author", { booksByAuthor, author });
 })
 
 // GET new: show new book form
