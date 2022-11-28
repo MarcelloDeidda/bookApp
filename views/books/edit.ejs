@@ -22,6 +22,10 @@
                                 value="<%= book.year %>">
                         </div>
                         <div class="col-12 mb-3">
+                            <label class="form-label" for="summary">Summary</label>
+                            <textarea class="form-control" id="summary" name="summary"><%= book.summary %></textarea>
+                        </div>
+                        <div class="col-12 mb-3">
                             <label class="form-label" for="imgUrl">Image URL</label>
                             <input class="form-control" id="imgUrl" name="imgUrl" type="text" value="<%= book.imgUrl %> ">
                         </div>

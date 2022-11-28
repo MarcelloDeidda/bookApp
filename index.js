@@ -11,7 +11,7 @@ const { sortBySurname } = require("./utils/utils.js");
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect("mongodb://localhost:27017/bookApp")
+    await mongoose.connect("mongodb://localhost:27017/bookAppDatabase")
     console.log("CONNECTED TO MONGOOSE");
 }
 
@@ -37,10 +37,8 @@ app.get("/books", async (req, res) => {
 // Get books/search: search books by title or author
 app.get("/books/search", async (req, res) => {
     const { search } = req.query;
-    const booksByTitle = await Book.find({ title: {$regex: search, $options : "i"} });
-    const booksByAuthor = await Book.find({ author: {$regex: search, $options : "i"} });
-    books = [...booksByTitle, ...booksByAuthor]
-    res.render("books/search", {books, search});
+    const books = await Book.find({ $or: [{ title: { $regex: search, $options: "i" } }, { author: { $regex: search, $options: "i" } }] });
+    res.render("books/search", { books, search });
 })
 
 // GET authors: show authors from database
@@ -112,7 +110,7 @@ app.delete("/books/:id", async (req, res) => {
 // DELETE reviews: delete review from book
 app.delete("/books/:bookId/reviews/:reviewId", async (req, res) => {
     const { bookId, reviewId } = req.params;
-    await Book.findByIdAndUpdate(bookId, {$pull: {reviews: reviewId}});
+    await Book.findByIdAndUpdate(bookId, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
     res.redirect(`/books/${bookId}`);
 })

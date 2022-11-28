@@ -19,6 +19,10 @@
               <dd class="col-sm-8">
                 <%=book.year%>
               </dd>
+              <dt class="col-sm-4">Summary:</dt>
+              <dd class="col-sm-8">
+                <%=book.summary%>
+              </dd>
             </dl>
             <form class="row" action="/books/<%= book.id %>?_method=DELETE" method="post">
               <div class="col-12 btn-group" role="group">
