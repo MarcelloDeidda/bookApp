@@ -1,0 +1,21 @@
+#delete-icon {
+    opacity: 0;
+}
+
+#button-delete {
+    transition: 100ms;
+}
+
+.review-card:hover #delete-icon {
+    opacity: 1;
+}
+
+.book-image {
+    width: 90%;
+    height: 360px;
+    object-fit: cover;
+}
+
+#book-image {
+    width: 90%;
+}

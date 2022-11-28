@@ -39,7 +39,7 @@ app.get("/books/authors", async (req, res) => {
     const books = await Book.find({});
     const authorList = books.map(book => book.author);
     const authors = [...new Set(authorList.sort())];
-    res.render("books/authors", {authors});
+    res.render("books/authors", { authors });
 })
 
 // GET authors/author: show autor details
@@ -61,11 +61,32 @@ app.get("/books/:id", async (req, res) => {
     res.render("books/show", { book });
 })
 
+// GET books/id/edit: show edit page for book
+app.get("/books/:id/edit", async (req, res) => {
+    const { id } = req.params;
+    const book = await Book.findById(id);
+    res.render("books/edit", { book });
+})
+
+// PUT books/id: edit book details
+app.put("/books/:id", async (req, res) => {
+    const { id } = req.params;
+    const newBook = await Book.findByIdAndUpdate(id, req.body, { runValidators: true });
+    res.redirect(`/books/${id}`);
+})
+
 // POST books: save book into database
 app.post("/books", async (req, res) => {
     const newBook = new Book(req.body);
     await newBook.save();
     res.redirect(`/books/${newBook._id}`);
+})
+
+// DELETE books: delete book from database
+app.delete("/books/:id", async (req, res) => {
+    const { id } = req.params;
+    await Book.findByIdAndDelete(id);
+    res.redirect("/books");
 })
 
 // Listen on port 3000

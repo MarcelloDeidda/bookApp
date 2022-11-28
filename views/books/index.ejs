@@ -1,22 +1,23 @@
 <%- include("partials/head") %>
-    <div class="container my-5 pt-5">
-        <h1 class="display-3 text-center mb-5">My Library</h1>
-        <div class="row pt-5">
-            <%for (let book of books) {%>
-                <a class="btn col-3 border-0" href="/books/<%=book.id%>">
-                    <img src="<%= book.imgUrl %>" class="img-fluid book-image" alt="">
-                    <div class="row mt-auto">
-                        <h2 class="display-7">
-                            <%=book.title%>
-                        </h2>
-                        <p>
-                            <% for (let i=0; i < book.rating; i++) {%>
-                                &#9733;
-                                <% } %>
-                        </p>
-                    </div>
-                </a>
-                <%}%>
+    <%- include("partials/navbar") %>
+        <div class="container my-5 pt-5">
+            <h1 class="display-3 text-center mb-5">My Library</h1>
+            <div class="row pt-5">
+                <%for (let book of books) {%>
+                    <a class="btn col-3 border-0" href="/books/<%=book.id%>">
+                        <img src="<%= book.imgUrl %>" class="img-fluid book-image" alt="">
+                        <div class="row mt-auto">
+                            <h2 class="display-7">
+                                <%=book.title%>
+                            </h2>
+                            <p>
+                                <% for (let i=0; i < book.rating; i++) {%>
+                                    &#9733;
+                                    <% } %>
+                            </p>
+                        </div>
+                    </a>
+                    <%}%>
+            </div>
         </div>
-    </div>
-    <%- include("partials/footer") %>
+        <%- include("partials/footer") %>
