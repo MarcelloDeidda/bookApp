@@ -1,4 +1,4 @@
-# === bookApp - IN PROGRESS ===
+# === Book App - IN PROGRESS ===
 
 1.Project name
 
@@ -12,7 +12,7 @@
 
 ## 1.Project name:
 
-bookApp
+Book App
 
 
 ## 2.Description:
