@@ -45,8 +45,13 @@ The app is developed with node.js, express.js, mongoDB (via mongoose).
 
 ## 4.Installation:
 
--
-
 
 ## 5.Previews:
-![ebookstore_preview](https://user-images.githubusercontent.com/76016486/203813658-c92ebcf6-0647-4cbb-b7be-b30a2d2746d4.png)
+- Index page:
+![index](https://user-images.githubusercontent.com/76016486/204314176-bf7c85b3-f7a0-4663-aafa-f3f5b05b8831.png)
+
+- Show page:
+![show](https://user-images.githubusercontent.com/76016486/204314296-8da25143-ad72-44c4-a2f5-6c166b7b7e99.png)
+
+- Edit page:
+![edit](https://user-images.githubusercontent.com/76016486/204314331-4e5ad373-a721-42ed-9557-564a32c646bf.png)
