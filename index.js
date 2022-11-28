@@ -4,9 +4,8 @@ const path = require("path");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const Book = require("./models/book");
-const Reviews = require("./models/review");
-const { populate } = require("./models/review");
 const Review = require("./models/review");
+const { sortBySurname } = require("./utils/utils.js");
 
 // Set up database connection
 main().catch(err => console.log(err));
@@ -35,11 +34,20 @@ app.get("/books", async (req, res) => {
     res.render("books/index", { books })
 })
 
+// Get books/search: search books by title or author
+app.get("/books/search", async (req, res) => {
+    const { search } = req.query;
+    const booksByTitle = await Book.find({ title: {$regex: search, $options : "i"} });
+    const booksByAuthor = await Book.find({ author: {$regex: search, $options : "i"} });
+    books = [...booksByTitle, ...booksByAuthor]
+    res.render("books/search", {books, search});
+})
+
 // GET authors: show authors from database
 app.get("/books/authors", async (req, res) => {
     const books = await Book.find({});
     const authorList = books.map(book => book.author);
-    const authors = [...new Set(authorList.sort())];
+    const authors = sortBySurname(authorList);
     res.render("books/authors", { authors });
 })
 
