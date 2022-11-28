@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const Book = require("./models/book");
 const Reviews = require("./models/review");
 const { populate } = require("./models/review");
+const Review = require("./models/review");
 
 // Set up database connection
 main().catch(err => console.log(err));
@@ -68,13 +69,6 @@ app.get("/books/:id/edit", async (req, res) => {
     res.render("books/edit", { book });
 })
 
-// PUT books/id: edit book details
-app.put("/books/:id", async (req, res) => {
-    const { id } = req.params;
-    const newBook = await Book.findByIdAndUpdate(id, req.body, { runValidators: true });
-    res.redirect(`/books/${id}`);
-})
-
 // POST books: save book into database
 app.post("/books", async (req, res) => {
     const newBook = new Book(req.body);
@@ -82,11 +76,37 @@ app.post("/books", async (req, res) => {
     res.redirect(`/books/${newBook._id}`);
 })
 
+// POST review: save review for book
+app.post("/books/:id/", async (req, res) => {
+    const { id } = req.params;
+    const book = await Book.findById(id);
+    const review = new Review(req.body.review);
+    book.reviews.push(review);
+    await review.save();
+    await book.save();
+    res.redirect(`/books/${id}`);
+})
+
+// PUT books/id: edit book details
+app.put("/books/:id", async (req, res) => {
+    const { id } = req.params;
+    const newBook = await Book.findByIdAndUpdate(id, req.body, { runValidators: true });
+    res.redirect(`/books/${id}`);
+})
+
 // DELETE books: delete book from database
 app.delete("/books/:id", async (req, res) => {
     const { id } = req.params;
     await Book.findByIdAndDelete(id);
     res.redirect("/books");
+})
+
+// DELETE reviews: delete review from book
+app.delete("/books/:bookId/reviews/:reviewId", async (req, res) => {
+    const { bookId, reviewId } = req.params;
+    await Book.findByIdAndUpdate(bookId, {$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/books/${bookId}`);
 })
 
 // Listen on port 3000
