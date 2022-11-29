@@ -3,9 +3,11 @@
         <div class="container my-5 pt-5">
             <div class="row justify-content-center">
                 <h1 class="display-3 text-center">Edit Book</h1>
-                <h2 class="display-5 text-center mb-5"><%= book.title%></h2>
+                <h2 class="display-5 text-center mb-5">
+                    <%= book.title%>
+                </h2>
                 <div class="col-md-8 col-lg-6">
-                    <form class="row" method="POST" action="/books/<%= book.id %>?_method=PUT">
+                    <form class="row validated-form" method="POST" action="/books/<%= book.id %>?_method=PUT" novalidate>
                         <div class="col-12 mb-3">
                             <label class="form-label" for="title">Title</label>
                             <input class="form-control" id="title" name="title" type="text" required
@@ -27,7 +29,8 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label class="form-label" for="imgUrl">Image URL</label>
-                            <input class="form-control" id="imgUrl" name="imgUrl" type="text" value="<%= book.imgUrl %> ">
+                            <input class="form-control" id="imgUrl" name="imgUrl" type="text"
+                                value="<%= book.imgUrl %> ">
                         </div>
                         <div class="col-12 my-2 d-grid gap-2">
                             <button type="submit" class="btn btn-success">Save</button>
@@ -38,7 +41,26 @@
                     </form>
                 </div>
             </div>
-        </div>  
+        </div>
+        <script>
+            (() => {
+                'use strict'
 
-        
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.validated-form')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
+
         <%- include("partials/footer") %>
