@@ -6,7 +6,10 @@ const mongoose = require("mongoose");
 const Book = require("./models/book");
 const Review = require("./models/review");
 const { sortBySurname } = require("./utils/utils.js");
+const ExpressError = require("./utils/ExpressError")
 const catchAsync = require("./utils/catchAsync.js");
+const { bookSchema } = require("./schemas");
+const { join } = require("path");
 
 // Set up database connection
 main().catch(err => console.log(err));
@@ -28,6 +31,16 @@ app.use(express.static(path.join(__dirname, "public")));
 // Set up views path
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+const validateBook = (req, res, next) => {
+    const { error } = bookSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(", ");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+}
 
 // GET books: show books from database
 app.get("/books", catchAsync(async (req, res) => {
@@ -64,9 +77,9 @@ app.get("/books/new", (req, res) => {
 
 // GET books/id: show book details
 app.get("/books/:id", catchAsync(async (req, res, next) => {
-        const { id } = req.params;
-        const book = await Book.findById(id).populate("reviews");
-        res.render("books/show", { book });
+    const { id } = req.params;
+    const book = await Book.findById(id).populate("reviews");
+    res.render("books/show", { book });
 }))
 
 // GET books/id/edit: show edit page for book
@@ -77,7 +90,7 @@ app.get("/books/:id/edit", catchAsync(async (req, res) => {
 }))
 
 // POST books: save book into database
-app.post("/books", catchAsync(async (req, res) => {
+app.post("/books", validateBook, catchAsync(async (req, res) => {
     const newBook = new Book(req.body);
     await newBook.save();
     res.redirect(`/books/${newBook._id}`);
@@ -95,14 +108,14 @@ app.post("/books/:id/", catchAsync(async (req, res) => {
 }))
 
 // PUT books/id: edit book details
-app.put("/books/:id", catchAsync(async (req, res) => {
+app.put("/books/:id", validateBook, catchAsync(async (req, res) => {
     const { id } = req.params;
     const newBook = await Book.findByIdAndUpdate(id, req.body, { runValidators: true });
     res.redirect(`/books/${id}`);
 }))
 
 // DELETE books: delete book from database
-app.delete("/books/:id", catrchAsync(async (req, res) => {
+app.delete("/books/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     await Book.findByIdAndDelete(id);
     res.redirect("/books");
@@ -116,9 +129,15 @@ app.delete("/books/:bookId/reviews/:reviewId", catchAsync(async (req, res) => {
     res.redirect(`/books/${bookId}`);
 }))
 
+app.all("*", (req, res, next) => {
+    next(new ExpressError("Page not found", 404));
+})
+
 // Handle errors
 app.use((err, req, res, next) => {
-    res.send("Oh no!");
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = "Oh no! Something went wrong!";
+    res.status(statusCode).render("books/error", { err });
 })
 
 // Listen on port 3000
