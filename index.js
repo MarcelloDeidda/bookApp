@@ -3,10 +3,7 @@ const express = require("express");
 const path = require("path");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const Review = require("./models/review");
 const ExpressError = require("./utils/ExpressError")
-const catchAsync = require("./utils/catchAsync.js");
-const { join } = require("path");
 const books = require("./routes/books");
 const reviews = require("./routes/reviews");
 

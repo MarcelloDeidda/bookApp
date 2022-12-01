@@ -1,3 +1,15 @@
+.display-7 {
+    font-size: calc(1.300rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2
+}
+
+@media (min-width:1200px) {
+    .display-7 {
+        font-size: 1.2rem
+    }
+}
+
 #delete-icon {
     opacity: 0;
 }
@@ -18,4 +30,24 @@
 
 #book-image {
     width: 90%;
+}
+
+.btn {
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border-radius: var(--bs-btn-border-radius);
+    transition: 200ms;
+}
+
+.btn h2 {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1.2
+}
+
+.btn:hover {
+    border-color: black
 }
