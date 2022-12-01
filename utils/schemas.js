@@ -7,3 +7,8 @@ module.exports.bookSchema = Joi.object({
     summary: Joi.string().allow(null, ""),
     imgUrl: Joi.string().allow(null, "")
 }).required()
+
+module.exports.reviewSchema = Joi.object({
+    body: Joi.string().required(),
+    rating: Joi.number().required().min(1).max(5)
+}).required()
