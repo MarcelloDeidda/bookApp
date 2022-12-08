@@ -1,46 +1,38 @@
-<%- include("partials/head") %>
-    <%- include("partials/navbar") %>
-        <div class="container my-5 pt-5">
-            <div class="row justify-content-center">
-                <h1 class="display-3 text-center">Edit Book</h1>
-                <h2 class="display-5 text-center mb-5">
-                    <%= book.title%>
-                </h2>
-                <div class="col-md-8 col-lg-6">
-                    <form class="row validated-form" method="POST" action="/books/<%= book.id %>?_method=PUT" novalidate>
-                        <div class="col-12 mb-3">
-                            <label class="form-label" for="title">Title</label>
-                            <input class="form-control" id="title" name="title" type="text" required
-                                value="<%= book.title %>">
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label class="form-label" for="author">Author</label>
-                            <input class="form-control" id="author" name="author" type="text" required
-                                value="<%= book.author %>">
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label class="form-label" for="year">Year of publication</label>
-                            <input class="form-control" id="year" name="year" type="number" required
-                                value="<%= book.year %>">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label class="form-label" for="summary">Summary</label>
-                            <textarea class="form-control" id="summary" name="summary"><%= book.summary %></textarea>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label class="form-label" for="imgUrl">Image URL</label>
-                            <input class="form-control" id="imgUrl" name="imgUrl" type="text"
-                                value="<%= book.imgUrl %> ">
-                        </div>
-                        <div class="col-12 my-2 d-grid gap-2">
-                            <button type="submit" class="btn btn-success">Save</button>
-                        </div>
-                        <div class="col-12 my-2 d-grid gap-2 mb-5">
-                            <a class="btn btn-danger" href="/books/<%= book.id %> ">Cancel</a>
-                        </div>
-                    </form>
+<% layout("./layouts/boilerplate") %>
+    <div class="row justify-content-center">
+        <h1 class="display-3 text-center">Edit Book</h1>
+        <h2 class="display-5 text-center mb-5">
+            <%= book.title%>
+        </h2>
+        <div class="col-md-8 col-lg-6">
+            <form class="row validated-form" method="POST" action="/books/<%= book.id %>?_method=PUT" novalidate>
+                <div class="col-12 mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" id="title" name="title" type="text" required value="<%= book.title %>">
                 </div>
-            </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label" for="author">Author</label>
+                    <input class="form-control" id="author" name="author" type="text" required
+                        value="<%= book.author %>">
+                </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label" for="year">Year of publication</label>
+                    <input class="form-control" id="year" name="year" type="number" required value="<%= book.year %>">
+                </div>
+                <div class="col-12 mb-3">
+                    <label class="form-label" for="summary">Summary</label>
+                    <textarea class="form-control" id="summary" name="summary"><%= book.summary %></textarea>
+                </div>
+                <div class="col-12 mb-3">
+                    <label class="form-label" for="imgUrl">Image URL</label>
+                    <input class="form-control" id="imgUrl" name="imgUrl" type="text" value="<%= book.imgUrl %> ">
+                </div>
+                <div class="col-12 my-2 d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+                <div class="col-12 my-2 d-grid gap-2 mb-5">
+                    <a class="btn btn-danger" href="/books/<%= book.id %> ">Cancel</a>
+                </div>
+            </form>
         </div>
-
-        <%- include("partials/footer") %>
+    </div>
