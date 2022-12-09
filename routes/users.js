@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router()
+const passport = require("passport");
 const catchAsync = require("../utils/catchAsync.js");
 const ExpressError = require("../utils/ExpressError")
 const User = require("../models/user");
-const passport = require("passport");
 
 // GET register: render register form
 router.get("/register", (req, res) => {

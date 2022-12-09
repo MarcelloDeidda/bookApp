@@ -2,16 +2,16 @@
 const express = require("express");
 const session = require("express-session");
 const flash = require("connect-flash");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-const mongoose = require("mongoose");
 const ExpressError = require("./utils/ExpressError")
 const books = require("./routes/books");
 const reviews = require("./routes/reviews");
 const users = require("./routes/users");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 
 // Set up database connection

@@ -1,22 +1,9 @@
 const express = require("express");
 const router = express.Router()
 const catchAsync = require("../utils/catchAsync.js");
-const ExpressError = require("../utils/ExpressError")
-const { bookSchema } = require("../utils/schemas");
 const { sortBySurname } = require("../utils/utils.js");
+const { isLoggedIn, bookAuthorisation, validateBook } = require("../utils/middleware");
 const Book = require("../models/book");
-const { isLoggedIn } = require("../utils/middleware");
-
-// Define Book validator middleware
-const validateBook = (req, res, next) => {
-    const { error } = bookSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(", ");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-}
 
 // GET books: show books from database
 router.get("/", catchAsync(async (req, res) => {
@@ -39,7 +26,7 @@ router.get("/authors", catchAsync(async (req, res) => {
     res.render("books/authors", { authors });
 }))
 
-// GET authors/author: show autor details
+// GET authors/author: show author details
 router.get("/authors/:author", catchAsync(async (req, res) => {
     const { author } = req.params;
     const booksByAuthor = await Book.find({ author });
@@ -58,7 +45,12 @@ router.get("/new", isLoggedIn, (req, res) => {
 // GET books/id: show book details
 router.get("/:id", catchAsync(async (req, res, next) => {
     const { id } = req.params;
-    const book = await Book.findById(id).populate("reviews");
+    const book = await Book.findById(id).populate({
+        path: "reviews",
+        populate: {
+            path: "author"
+        }
+    }).populate("createdBy");
     if (!book) {
         req.flash("error", "Cannot find that book!");
         return res.redirect("/books");
@@ -67,7 +59,7 @@ router.get("/:id", catchAsync(async (req, res, next) => {
 }))
 
 // GET books/id/edit: show edit page for book
-router.get("/:id/edit", isLoggedIn, catchAsync(async (req, res) => {
+router.get("/:id/edit", isLoggedIn, bookAuthorisation, catchAsync(async (req, res) => {
     const { id } = req.params;
     const book = await Book.findById(id);
     if (!book) {
@@ -80,6 +72,7 @@ router.get("/:id/edit", isLoggedIn, catchAsync(async (req, res) => {
 // POST books: save book into database
 router.post("/", isLoggedIn, validateBook, catchAsync(async (req, res) => {
     try {
+        req.body.createdBy = req.user._id;
         const newBook = new Book(req.body);
         await newBook.save();
         req.flash("success", "Successfully created new book!");
@@ -91,7 +84,7 @@ router.post("/", isLoggedIn, validateBook, catchAsync(async (req, res) => {
 }))
 
 // PUT books/id: edit book details
-router.put("/:id", isLoggedIn, validateBook, catchAsync(async (req, res) => {
+router.put("/:id", isLoggedIn, bookAuthorisation, validateBook, catchAsync(async (req, res) => {
     try {
         const { id } = req.params;
         const newBook = await Book.findByIdAndUpdate(id, req.body, { runValidators: true });
@@ -104,7 +97,7 @@ router.put("/:id", isLoggedIn, validateBook, catchAsync(async (req, res) => {
 }))
 
 // DELETE books: delete book from database
-router.delete("/:id", isLoggedIn, catchAsync(async (req, res) => {
+router.delete("/:id", isLoggedIn, bookAuthorisation, catchAsync(async (req, res) => {
     try {
         const { id } = req.params;
         await Book.findByIdAndDelete(id);

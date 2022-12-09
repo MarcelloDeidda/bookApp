@@ -22,6 +22,7 @@
             <%=book.summary%>
           </dd>
         </dl>
+        <% if (currentUser && (book.createdBy.equals(currentUser._id) || currentUser._id.equals("6391fac5fddac52f420f0a4a"))) { %>
         <form class="row" action="/books/<%= book.id %>?_method=DELETE" method="post">
           <div class="col-12 btn-group" role="group">
             <a class="btn btn-outline-primary" href="/books/<%= book.id %>/edit"><span><svg
@@ -40,9 +41,11 @@
             </button>
           </div>
         </form>
+        <% } %>
       </div>
       <div class="row my-5 px-5 py-5 border border-secondary border-opacity-50 rounded">
-        <h3 class="display-6 text-center mb-5">Leave a review</h3>
+        <h3 class="display-6 text-center mb-5">Reviews</h3>
+        <% if (currentUser) { %>
         <form class="col-12 mb-5 validated-form" action="/books/<%= book.id %>/reviews" method="post" novalidate>
           <div class="col-6 mb-3">
             <label class="form-label" for="rating">Rating:</label>
@@ -56,6 +59,7 @@
             <button type="submit" class="btn btn-outline-success">Add review</button>
           </div>
         </form>
+        <% } %>
         <ul class="list-unstyled mb-5">
           <%for (let review of book.reviews) {%>
             <div class="card mb-3 px-3">
@@ -65,11 +69,14 @@
                     &#9733;
                     <% } %>
                 </p>
+                <p class="card-subtitle mb-2 text-muted">By <%= review.author.username %></p>
                 <p class="card-text">
                   <%=review.body%>
-                    <form action="/books/<%= book.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
+                  <% if (currentUser && (book.createdBy.equals(currentUser._id) || currentUser._id.equals("6391fac5fddac52f420f0a4a"))) { %>  
+                  <form action="/books/<%= book.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
                       <button class="btn btn-sm btn-outline-danger">Delete</button>
                     </form>
+                    <% } %>
                 </p>
               </div>
             </div>
