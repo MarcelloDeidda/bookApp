@@ -93,6 +93,10 @@ app.use("/books", books);
 // Serve "reviews" routes
 app.use("/books/:id/reviews", reviews);
 
+app.use("/", (req, res) => {
+    res.render("home");
+})
+
 // Handle invalid path
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page not found", 404));
