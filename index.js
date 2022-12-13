@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
+
 // Import modules
 const express = require("express");
 const session = require("express-session");
@@ -8,17 +12,19 @@ const LocalStrategy = require("passport-local");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
+const mongoSanitize = require("express-mongo-sanitize");
 const ExpressError = require("./utils/ExpressError")
 const books = require("./routes/books");
 const reviews = require("./routes/reviews");
 const users = require("./routes/users");
 const User = require("./models/user");
+const MongoStore = require("connect-mongo");
+const dbUrl = "mongodb://localhost:27017/bookAppDatabase";
 
 // Set up database connection
 main().catch(err => console.log(err));
-
 async function main() {
-    await mongoose.connect("mongodb://localhost:27017/bookAppDatabase")
+    await mongoose.connect(dbUrl);
     console.log("CONNECTED TO MONGOOSE");
 }
 
@@ -30,14 +36,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(mongoSanitize());
 
 // Set up session and flash
 const sessionConfig = {
+    store: MongoStore.create({
+        mongoUrl: dbUrl,
+        touchAfter: 24 * 60 * 60
+    }),
     secret: "abc",
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
