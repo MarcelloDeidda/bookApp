@@ -42,6 +42,7 @@ app.use(mongoSanitize());
 const sessionConfig = {
     store: MongoStore.create({
         mongoUrl: dbUrl,
+        secret: process.env.SECRET || "abc",
         touchAfter: 24 * 60 * 60
     }),
     secret: process.env.SECRET || "abc",
@@ -72,6 +73,7 @@ app.use((req, res, next) => {
         req.session.returnTo = req.originalUrl;
     }
     res.locals.currentUser = req.user;
+    console.log(req.user)
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();

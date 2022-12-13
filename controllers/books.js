@@ -40,6 +40,7 @@ module.exports.renderNew = (req, res) => {
 
 // Show book details
 module.exports.showBook = async (req, res, next) => {
+    admin = process.env.ADMIN
     const { id } = req.params;
     const book = await Book.findById(id).populate({
         path: "reviews",
@@ -51,7 +52,7 @@ module.exports.showBook = async (req, res, next) => {
         req.flash("error", "Cannot find that book!");
         return res.redirect("/books");
     }
-    res.render("books/show", { book });
+    res.render("books/show", { book, admin });
 }
 
 // Render Edit Book form

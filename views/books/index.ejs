@@ -2,7 +2,7 @@
     <h1 class="display-3 text-center mb-5">My Library</h1>
     <div class="row pt-5">
         <%for (let book of books) {%>
-            <a class="btn col-3 border-0" href="/books/<%=book.id%>">
+            <a class="btn col-3 border-0 my-3" href="/books/<%=book.id%>">
                 <img src="<%= book.imgUrl %>" class="img-fluid book-image" alt="">
                 <div class="row mt-2">
                     <h2 class="display-7">
