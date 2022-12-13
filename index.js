@@ -44,7 +44,7 @@ const sessionConfig = {
         mongoUrl: dbUrl,
         touchAfter: 24 * 60 * 60
     }),
-    secret: "abc",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
