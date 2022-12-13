@@ -19,7 +19,7 @@ const reviews = require("./routes/reviews");
 const users = require("./routes/users");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
-const dbUrl = "mongodb://localhost:27017/bookAppDatabase";
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
 
 // Set up database connection
 main().catch(err => console.log(err));
@@ -44,7 +44,7 @@ const sessionConfig = {
         mongoUrl: dbUrl,
         touchAfter: 24 * 60 * 60
     }),
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || "abc",
     resave: false,
     saveUninitialized: true,
     cookie: {
