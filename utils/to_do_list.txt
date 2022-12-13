@@ -1,1 +1,7 @@
 - Add warning before deleting book
+- Add book categories
+- Add books to personal page
+- Create dashboard with personal library
+- Change password
+- Reset password
+- Confirm email
