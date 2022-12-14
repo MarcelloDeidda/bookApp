@@ -7,7 +7,25 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
+    readBooks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Book"
+        }
+    ],
+    favouriteBooks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Book"
+        }
+    ],
+    wishlist: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Book"
+        }
+    ]
 });
 userSchema.plugin(passportLocalMongoose);
 

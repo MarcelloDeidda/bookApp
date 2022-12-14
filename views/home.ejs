@@ -20,11 +20,11 @@
                 <% if (currentUser) { %>
                     <h1 class="display-1 mb-5 text-center">BookApp</h1>
                     <h2 class="display-6 text-center mb-5">Welcome Back, <%= currentUser.username %>!</h2>
-                    <a class="btn btn-outline-light col-10 offset-1 my-2" href="/books">Library</a>
+                    <a class="btn btn-outline-light col-10 offset-1 my-2" href="/books">Explore Books</a>
                     <% } else {%>
                         <h1 class="display-1 mb-5 text-center">BookApp</h1>
                         <h2 class="display-6 text-center mb-5">Welcome!</h2>
-                        <a class="btn btn-outline-light col-10 offset-1 my-2" href="/books">Library</a>
+                        <a class="btn btn-outline-light col-10 offset-1 my-2" href="/books">Explore Books</a>
                         <a class="btn btn-outline-light col-10 offset-1 my-2" href="/auth/login">Login</a>
                         <a class="btn btn-outline-light col-10 offset-1 my-2" href="/auth/register">Register</a>
                         <% } %>
