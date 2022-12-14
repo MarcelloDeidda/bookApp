@@ -18,7 +18,7 @@ module.exports.isLoggedIn = (req, res, next) => {
 module.exports.bookAuthorisation = async (req, res, next) => {
     const { id } = req.params;
     const book = await Book.findById(id);
-    if (!book.createdBy.equals(req.user._id) && !req.user._id.equals("6391fac5fddac52f420f0a4a")) {
+    if (!book.createdBy.equals(req.user._id) && !req.user._id.equals(process.env.ADMIN)) {
         req.flash("error", "You do not have authorisation to do that!");
         return res.redirect(`/books/${id}`);
     }
@@ -29,7 +29,7 @@ module.exports.bookAuthorisation = async (req, res, next) => {
 module.exports.reviewAuthorisation = async (req, res, next) => {
     const { id, reviewId } = req.params;
     const review = await Review.findById(reviewId);
-    if (!review.author.equals(req.user._id) && !req.user._id.equals("6391fac5fddac52f420f0a4a")) {
+    if (!review.author.equals(req.user._id) && !req.user._id.equals(process.env.ADMIN)) {
         req.flash("error", "You do not have authorisation to do that!");
         return res.redirect(`/books/${id}`);
     }
