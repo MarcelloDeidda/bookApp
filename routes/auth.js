@@ -14,7 +14,7 @@ router.route("/login")
     // GET login: render login form
     .get(authController.renderLogin)
     // POST login: log in existing user
-    .post(passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }), authController.login);
+    .post(passport.authenticate("local", { failureFlash: true, failureRedirect: "/auth/login" }), authController.login);
 
 // GET logout: logout logic
 router.get("/logout", authController.logout);
