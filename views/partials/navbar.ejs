@@ -9,15 +9,32 @@
                 <% if (currentUser) { %>
                     <a href="/library/<%= currentUser.id %>" class="nav-item nav-link mx-2">My Library</a>
                     <% } %>
-                <a href="/books" class="nav-item nav-link mx-2">Explore</a>
-                <a href="/books/authors" class="nav-item nav-link mx-2">Authors</a>
-                <% if (!currentUser) { %>
-                    <a href="/auth/login" class="nav-item nav-link mx-2">Login</a>
-                    <a href="/auth/register" class="nav-item nav-link mx-2">Register</a>
-                    <% } else { %>
-                        <a href="/books/new" class="nav-item nav-link mx-2">New Book</a>
-                        <a href="/auth/logout" class="nav-item nav-link mx-2">Logout</a>
-                        <% } %>
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Books
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/books">Explore Books</a></li>
+                                <li><a class="dropdown-item" href="/books/authors">Explore Authors</a></li>
+                                <li><a class="dropdown-item <% if (!currentUser) { %> disabled <% } %>"
+                                        href="/books/new">Add New Book</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                User
+                            </a>
+                            <ul class="dropdown-menu">
+                                <% if (!currentUser) { %>
+                                    <a href="/auth/login" class="dropdown-item">Login</a>
+                                    <a href="/auth/register" class="dropdown-item">Register</a>
+                                    <% } else { %>
+                                        <a href="/auth/logout" class="dropdown-item">Logout</a>
+                                        <% } %>
+                            </ul>
+                        </li>
             </div>
             <div class="col-sm-4">
                 <form method="GET" action="/books/search" class="d-flex input-group" role="search">

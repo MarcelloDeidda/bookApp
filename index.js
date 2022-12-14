@@ -17,6 +17,7 @@ const ExpressError = require("./utils/ExpressError")
 const books = require("./routes/books");
 const reviews = require("./routes/reviews");
 const auth = require("./routes/auth");
+const user = require("./routes/user");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
@@ -92,6 +93,9 @@ app.use("/books", books);
 // Serve "reviews" routes
 app.use("/books/:id/reviews", reviews);
 
+// Serve "user" routes
+app.use("/library", user);
+
 app.get("/", (req, res) => {
     res.render("home");
 })
@@ -105,6 +109,7 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = "Oh no! Something went wrong!";
+    console.log(err);
     res.status(statusCode).render("books/error", { err });
 })
 

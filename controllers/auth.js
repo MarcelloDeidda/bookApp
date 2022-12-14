@@ -33,7 +33,7 @@ module.exports.register = async (req, res) => {
             e.message = "A user with the give email address is already registered";
         }
         req.flash("error", e.message);
-        res.redirect("/register");
+        res.redirect("/auth/register");
     }
 }
 
