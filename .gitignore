@@ -1,3 +1,4 @@
 previews/
 .env
 node_modules/
+utils/seeds.js
