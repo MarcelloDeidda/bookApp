@@ -19,7 +19,7 @@ const reviews = require("./routes/reviews");
 const auth = require("./routes/auth");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
-const dbUrl = /*process.env.DB_URL ||*/ "mongodb://localhost:27017/bookAppDatabase";
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
 
 // Set up database connection
 main().catch(err => console.log(err));
