@@ -16,10 +16,10 @@ const mongoSanitize = require("express-mongo-sanitize");
 const ExpressError = require("./utils/ExpressError")
 const books = require("./routes/books");
 const reviews = require("./routes/reviews");
-const users = require("./routes/users");
+const auth = require("./routes/auth");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
-const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
+const dbUrl = /*process.env.DB_URL ||*/ "mongodb://localhost:27017/bookAppDatabase";
 
 // Set up database connection
 main().catch(err => console.log(err));
@@ -69,11 +69,10 @@ passport.deserializeUser(User.deserializeUser());
 
 // Set up local variables
 app.use((req, res, next) => {
-    if (!["/login", "/"].includes(req.originalUrl)) {
+    if (!["/auth/login", "/"].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl;
     }
     res.locals.currentUser = req.user;
-    console.log(req.user)
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
@@ -84,8 +83,8 @@ app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// Serve "users" routes
-app.use("/", users);
+// Serve "auth" routes
+app.use("/auth", auth);
 
 // Serve "books" routes
 app.use("/books", books);
@@ -93,7 +92,7 @@ app.use("/books", books);
 // Serve "reviews" routes
 app.use("/books/:id/reviews", reviews);
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.render("home");
 })
 

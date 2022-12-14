@@ -77,7 +77,7 @@
                         <h4 class="card-title">
                           <%= review.author.username %>
                             <% if (currentUser && (book.createdBy.equals(currentUser._id) ||
-                              currentUser._id.equals("6391fac5fddac52f420f0a4a"))) { %>
+                              currentUser._id.equals(admin))) { %>
                               <form action="/books/<%= book.id %>/reviews/<%= review.id %>?_method=DELETE"
                                 method="POST">
                                 <button class="btn btn-sm btn-outline-danger">Delete</button>

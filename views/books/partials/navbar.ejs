@@ -6,14 +6,17 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="expandme">
             <div class="navbar-nav mx-2">
-                <a href="/books" class="nav-item nav-link mx-2">Library</a>
-                <a href="/books/new" class="nav-item nav-link mx-2">New Book</a>
+                <% if (currentUser) { %>
+                    <a href="/library/<%= currentUser.id %>" class="nav-item nav-link mx-2">My Library</a>
+                    <% } %>
+                <a href="/books" class="nav-item nav-link mx-2">Explore</a>
                 <a href="/books/authors" class="nav-item nav-link mx-2">Authors</a>
                 <% if (!currentUser) { %>
-                    <a href="/login" class="nav-item nav-link mx-2">Login</a>
-                    <a href="/register" class="nav-item nav-link mx-2">Register</a>
+                    <a href="/auth/login" class="nav-item nav-link mx-2">Login</a>
+                    <a href="/auth/register" class="nav-item nav-link mx-2">Register</a>
                     <% } else { %>
-                        <a href="/logout" class="nav-item nav-link mx-2">Logout</a>
+                        <a href="/books/new" class="nav-item nav-link mx-2">New Book</a>
+                        <a href="/auth/logout" class="nav-item nav-link mx-2">Logout</a>
                         <% } %>
             </div>
             <div class="col-sm-4">

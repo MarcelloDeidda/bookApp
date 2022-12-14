@@ -2,12 +2,12 @@ const User = require("../models/user");
 
 // Render register form
 module.exports.renderRegister = (req, res) => {
-    res.render("users/register");
+    res.render("auth/register");
 }
 
 // Render login form
 module.exports.renderLogin = (req, res) => {
-    res.render("users/login");
+    res.render("auth/login");
 }
 
 // Logout user
