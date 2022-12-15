@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router()
 const catchAsync = require("../utils/catchAsync.js");
-const { isLoggedIn, bookAuthorisation, validateBook } = require("../utils/middleware");
+const { isLoggedIn, isAdmin, bookAuthorisation, validateBook } = require("../utils/middleware");
 const bookController = require("../controllers/books");
 
 router.route("/")
@@ -32,5 +32,14 @@ router.route("/:id")
 
 // GET books/id/edit: show edit page for book
 router.get("/:id/edit", isLoggedIn, bookAuthorisation, catchAsync(bookController.renderEdit));
+
+// GET books/id/read: add book to read list
+router.get("/:id/read", isLoggedIn, catchAsync(bookController.addToRead));
+
+// GET books/id/read: add book to read list
+router.get("/:id/favourite", isLoggedIn, catchAsync(bookController.addToFavourite));
+
+// GET books/id/read: add book to read list
+router.get("/:id/wishlist", isLoggedIn, catchAsync(bookController.addToWishlist));
 
 module.exports = router;

@@ -14,10 +14,10 @@ const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const mongoSanitize = require("express-mongo-sanitize");
 const ExpressError = require("./utils/ExpressError")
-const books = require("./routes/books");
-const reviews = require("./routes/reviews");
-const auth = require("./routes/auth");
-const user = require("./routes/user");
+const bookRouter = require("./routes/books");
+const reviewRouter = require("./routes/reviews");
+const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
@@ -74,6 +74,11 @@ app.use((req, res, next) => {
         req.session.returnTo = req.originalUrl;
     }
     res.locals.currentUser = req.user;
+    if (req.user) {
+        res.locals.isAdmin = (req.user.id == process.env.ADMIN);
+    } else {
+        res.locals.isAdmin = false;
+    }
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
@@ -85,16 +90,16 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Serve "auth" routes
-app.use("/auth", auth);
+app.use("/auth", authRouter);
 
 // Serve "books" routes
-app.use("/books", books);
+app.use("/books", bookRouter);
 
 // Serve "reviews" routes
-app.use("/books/:id/reviews", reviews);
+app.use("/books/:id/reviews", reviewRouter);
 
 // Serve "user" routes
-app.use("/library", user);
+app.use("/library", userRouter);
 
 app.get("/", (req, res) => {
     res.render("home");

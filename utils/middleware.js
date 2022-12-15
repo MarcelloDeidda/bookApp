@@ -15,6 +15,16 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 }
 
+// isLoggedIn middleware protects reserved paths for logged in users
+module.exports.isAdmin = (req, res, next) => {
+    const { id } = req.user;
+    if (id != process.env.ADMIN) {
+        req.flash("error", "You do not have authorisation for this action!")
+        return res.redirect(req.originalUrl);
+    }
+    next();
+}
+
 // bookAuthorisation middleware protects reserved paths for authorised users
 module.exports.bookAuthorisation = async (req, res, next) => {
     const { id } = req.params;

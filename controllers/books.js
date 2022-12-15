@@ -1,4 +1,5 @@
 const Book = require("../models/book");
+const User = require("../models/user");
 const { sortBySurname } = require("../utils/utils.js");
 
 // Show books from database
@@ -40,7 +41,6 @@ module.exports.renderNew = (req, res) => {
 
 // Show book details
 module.exports.showBook = async (req, res, next) => {
-    admin = process.env.ADMIN
     const { id } = req.params;
     const book = await Book.findById(id).populate({
         path: "reviews",
@@ -52,7 +52,7 @@ module.exports.showBook = async (req, res, next) => {
         req.flash("error", "Cannot find that book!");
         return res.redirect("/books");
     }
-    res.render("books/show", { book, admin });
+    res.render("books/show", { book });
 }
 
 // Render Edit Book form
@@ -100,6 +100,51 @@ module.exports.deleteBook = async (req, res) => {
         await Book.findByIdAndDelete(id);
         req.flash("success", "Successfully deleted book!");
         res.redirect("/books");
+    } catch (e) {
+        req.flash("error", e);
+        res.redirect(`/books/${id}`);
+    }
+}
+
+// Add book to read list
+module.exports.addToRead = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(req.user._id);
+        user.readBooks.push(id);
+        user.save();
+        req.flash("success", "This book was added to your library!");
+        res.redirect(`/books/${id}`);
+    } catch (e) {
+        req.flash("error", e);
+        res.redirect(`/books/${id}`);
+    }
+}
+
+// Add book to read list
+module.exports.addToFavourite = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(req.user._id);
+        user.favouriteBooks.push(id);
+        user.save();
+        req.flash("success", "This book was added to your library!");
+        res.redirect(`/books/${id}`);
+    } catch (e) {
+        req.flash("error", e);
+        res.redirect(`/books/${id}`);
+    }
+}
+
+// Add book to read list
+module.exports.addToWishlist = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(req.user._id);
+        user.wishlist.push(id);
+        user.save();
+        req.flash("success", "This book was added to your library!");
+        res.redirect(`/books/${id}`);
     } catch (e) {
         req.flash("error", e);
         res.redirect(`/books/${id}`);
