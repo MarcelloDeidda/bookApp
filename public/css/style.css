@@ -28,6 +28,28 @@
     object-fit: cover;
 }
 
+.book-preview {
+    width: 20%;
+    height: 12vw;
+    object-fit: cover;
+}
+
+.list-element {
+    text-decoration: none;
+    color: inherit;
+    transition: 200ms;
+    height: 17vw;
+}
+
+.list-element:hover {
+    opacity: 0.5;
+    color: inherit;
+}
+
+.empty-list {
+    height: 13vw;
+}
+
 #book-image {
     width: 90%;
 }

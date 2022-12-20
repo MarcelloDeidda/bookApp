@@ -73,11 +73,12 @@ app.use((req, res, next) => {
     if (!["/auth/login", "/"].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl;
     }
-    res.locals.currentUser = req.user;
     if (req.user) {
         res.locals.isAdmin = (req.user.id == process.env.ADMIN);
+        res.locals.currentUser = req.user;
     } else {
         res.locals.isAdmin = false;
+        res.locals.currentUser = null;
     }
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");

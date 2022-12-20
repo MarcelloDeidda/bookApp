@@ -1,0 +1,14 @@
+<% layout("./layouts/boilerplate") %>
+    <a class="text-decoration-none text-dark text-center mb-5" href="/library/<%= currentUser.id %>">
+        <h1 class="display-3">
+            <%= currentUser.username%>'s Library
+        </h1>
+    </a>
+    <h2 class="display-5 text-center"><%= role %></h2>
+    <div class="row pt-5">
+        <%for (let book of bookList) {%>
+            <a class="btn col-3 border-0 my-4" href="/books/<%=book.id%>">
+                <img src="<%= book.imgUrl %>" class="img-fluid book-image" alt="">
+            </a>
+            <%}%>
+    </div>

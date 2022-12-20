@@ -6,43 +6,42 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="expandme">
             <div class="navbar-nav mx-2">
+                <a class="nav-link mx-2" href="/books">Explore</a>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Books
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/books">Explore Books</a></li>
+                        <li><a class="dropdown-item" href="/books/authors">Explore Authors</a></li>
+                        <li><a class="dropdown-item <% if (!currentUser) { %> disabled <% } %>" href="/books/new">Add
+                                New Book</a></li>
+                    </ul>
+                </li>
                 <% if (currentUser) { %>
-                    <a href="/library/<%= currentUser.id %>" class="nav-item nav-link mx-2">My Library</a>
-                    <% } %>
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <%= currentUser.username %>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <a href="/library/<%= currentUser.id %>" class="dropdown-item">My Library</a>
+                            <a href="/auth/logout" class="dropdown-item">Logout</a>
+                        </ul>
+                    </li>
+                    <% } else { %>
                         <li class="nav-item dropdown mx-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Books
+                                User
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/books">Explore Books</a></li>
-                                <li><a class="dropdown-item" href="/books/authors">Explore Authors</a></li>
-                                <li><a class="dropdown-item <% if (!currentUser) { %> disabled <% } %>"
-                                        href="/books/new">Add New Book</a></li>
+                                <a href="/auth/login" class="dropdown-item">Login</a>
+                                <a href="/auth/register" class="dropdown-item">Register</a>
                             </ul>
                         </li>
-                        <% if (currentUser) { %>
-                            <li class="nav-item dropdown mx-2">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <%= currentUser.username %>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a href="/auth/logout" class="dropdown-item">Logout</a>
-                                </ul>
-                            </li>
-                            <% } else { %>
-                                <li class="nav-item dropdown mx-2">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        User
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <a href="/auth/login" class="dropdown-item">Login</a>
-                                        <a href="/auth/register" class="dropdown-item">Register</a>
-                                    </ul>
-                                </li>
-                                <% } %>
+                        <% } %>
             </div>
             <div class="col-sm-4">
                 <form method="GET" action="/books/search" class="d-flex input-group" role="search">

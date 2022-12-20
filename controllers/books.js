@@ -121,14 +121,14 @@ module.exports.addToRead = async (req, res) => {
     }
 }
 
-// Add book to read list
-module.exports.addToFavourite = async (req, res) => {
+// Remove book from read list
+module.exports.removeFromRead = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
-        user.favouriteBooks.push(id);
+        await user.readBooks.remove(id);
         user.save();
-        req.flash("success", "This book was added to your library!");
+        req.flash("success", "This book was removed from your library!");
         res.redirect(`/books/${id}`);
     } catch (e) {
         req.flash("error", e);
@@ -136,14 +136,59 @@ module.exports.addToFavourite = async (req, res) => {
     }
 }
 
-// Add book to read list
+// Add book to favourite list
+module.exports.addToFavourite = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(req.user._id);
+        user.favouriteBooks.push(id);
+        user.save();
+        req.flash("success", "This book was added to your favourites!");
+        res.redirect(`/books/${id}`);
+    } catch (e) {
+        req.flash("error", e);
+        res.redirect(`/books/${id}`);
+    }
+}
+
+// Remove book from favourite list
+module.exports.removeFromFavourite = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(req.user._id);
+        await user.favouriteBooks.remove(id);
+        user.save();
+        req.flash("success", "This book was removed from your favourites!");
+        res.redirect(`/books/${id}`);
+    } catch (e) {
+        req.flash("error", e);
+        res.redirect(`/books/${id}`);
+    }
+}
+
+// Add book to wishlist
 module.exports.addToWishlist = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
         user.wishlist.push(id);
         user.save();
-        req.flash("success", "This book was added to your library!");
+        req.flash("success", "This book was added to your wishlist!");
+        res.redirect(`/books/${id}`);
+    } catch (e) {
+        req.flash("error", e);
+        res.redirect(`/books/${id}`);
+    }
+}
+
+// Remove book from wishlist
+module.exports.removeFromWishlist = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(req.user._id);
+        await user.wishlist.remove(id);
+        user.save();
+        req.flash("success", "This book was removed from your wishlist!");
         res.redirect(`/books/${id}`);
     } catch (e) {
         req.flash("error", e);

@@ -36,10 +36,19 @@ router.get("/:id/edit", isLoggedIn, bookAuthorisation, catchAsync(bookController
 // GET books/id/read: add book to read list
 router.get("/:id/read", isLoggedIn, catchAsync(bookController.addToRead));
 
+// GET books/id/read: remove book from read list
+router.get("/:id/read/remove", isLoggedIn, catchAsync(bookController.removeFromRead));
+
 // GET books/id/read: add book to read list
 router.get("/:id/favourite", isLoggedIn, catchAsync(bookController.addToFavourite));
 
+// GET books/id/read: remove book from read list
+router.get("/:id/favourite/remove", isLoggedIn, catchAsync(bookController.removeFromFavourite));
+
 // GET books/id/read: add book to read list
 router.get("/:id/wishlist", isLoggedIn, catchAsync(bookController.addToWishlist));
+
+// GET books/id/read: remove book from read list
+router.get("/:id/wishlist/remove", isLoggedIn, catchAsync(bookController.removeFromWishlist));
 
 module.exports = router;
