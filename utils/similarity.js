@@ -2,11 +2,11 @@ const similarity = require("string-similarity");
 const Book = require("../models/book");
 const User = require("../models/user");
 const mongoose = require("mongoose");
-
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
 // Set up database connection
 main().catch(err => console.log(err));
 async function main() {
-    await mongoose.connect("mongodb://localhost:27017/bookAppDatabase");
+    await mongoose.connect(dbUrl);
 }
 
 module.exports.recommendBooks = async (userId) => {
