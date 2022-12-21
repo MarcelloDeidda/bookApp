@@ -3,16 +3,8 @@
   </h1>
   <div class="row pt-5">
     <%for (let book of booksByAuthor) {%>
-      <a class="btn col-3 border-0" href="/books/<%=book.id%>">
+      <a class="btn col-3 border-0 hoverable" href="/books/<%=book.id%>">
         <img src="<%= book.imgUrl %>" class="img-fluid book-image mb-2" alt="">
-        <h2 class="display-7 mt-2">
-          <%=book.title%>
-        </h2>
-        <p>
-          <% for (let i=0; i < book.rating; i++) {%>
-            &#9733;
-            <% } %>
-        </p>
       </a>
       <%}%>
   </div>

@@ -60,18 +60,21 @@
     vertical-align: middle;
     cursor: pointer;
     user-select: none;
-    border-radius: var(--bs-btn-border-radius);
     transition: 200ms;
+}
+
+.hoverable {
+    transition: 200ms;
+}
+
+.hoverable:hover {
+    opacity: 0.5;
 }
 
 .btn h2 {
     font-size: 26px;
     font-weight: 300;
     line-height: 1.2
-}
-
-.btn:hover {
-    border-color: black
 }
 
 #homepage-img {

@@ -60,12 +60,13 @@
                                             <p class="display-7">There are no books in your wishlist!</p>
                                         </div>
                                         <% } %>
-                                            <% if (false) { %>
+                                            <% if (user.favouriteBooks.length > 4) { %>
                                                 <a href="/library/<%=currentUser._id%>/recommended"
                                                     class="col-6 my-3 list-element">
                                                     <div class="row">
                                                         <div class="col-12 d-flex px-4">
-                                                            <%for (let book of user.wishlist) {%>
+                                                            <%for (let book of recommendedBooks.sort((a, b)=> 0.5 -
+                                                    Math.random()).slice(0, 5)) {%>
                                                                 <img src="<%= book.imgUrl %>"
                                                                     class="img-fluid book-preview" alt="">
                                                                 <%}%>
@@ -78,7 +79,7 @@
                                                 <% } else { %>
                                                     <div
                                                         class="col-6 my-3 d-flex justify-content-center align-items-center empty-list">
-                                                        <p class="display-7">Recommendations coming soon
+                                                        <p class="display-7">Please add more favourite books to get recommendations!
                                                         </p>
                                                     </div>
                                                     <% } %>

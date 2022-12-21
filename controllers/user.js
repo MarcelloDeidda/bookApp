@@ -1,13 +1,15 @@
 const User = require("../models/user");
 const Book = require("../models/book");
+const similarity = require("../utils/similarity");
 
 module.exports.showLibrary = async (req, res, next) => {
     const { id } = req.params;
+    const recommendedBooks = await similarity.recommendBooks(id);
     const user = await User.findById(id)
         .populate("readBooks")
         .populate("favouriteBooks")
         .populate("wishlist");
-    res.render("library/library", { user });
+    res.render("library/library", { user, recommendedBooks });
 }
 
 module.exports.showRead = async (req, res) => {
@@ -32,4 +34,10 @@ module.exports.showWishlist = async (req, res) => {
         .populate("wishlist");
     const bookList = user.wishlist;
     res.render("library/list", { bookList, role: "Wishlist" })
+}
+
+module.exports.showRecommended = async (req, res) => {
+    const { id } = req.params;
+    const bookList = await similarity.recommendBooks(id);
+    res.render("library/list", { bookList, role: "Recommended Books" })
 }
