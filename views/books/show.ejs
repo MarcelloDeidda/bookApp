@@ -76,7 +76,7 @@
         <% } %>
 
           <!-- Book interaction: edit or delete -->
-          <% if (currentUser && (book.createdBy.equals(currentUser._id) || isAdmin)) { %>
+          <% if (isAdmin) { %>
             <form class="row" action="/books/<%= book.id %>?_method=DELETE" method="post">
               <div class="col-12 btn-group" role="group">
                 <a class="btn btn-outline-primary" href="/books/<%= book.id %>/edit"><span><svg

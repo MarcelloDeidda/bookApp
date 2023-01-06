@@ -3,6 +3,7 @@ const Book = require("../models/book");
 const User = require("../models/user");
 const mongoose = require("mongoose");
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
+
 // Set up database connection
 main().catch(err => console.log(err));
 async function main() {
@@ -27,6 +28,6 @@ module.exports.recommendBooks = async (userId) => {
         score = favouriteSimilarity.reduce((a, b) => a + b) / favouriteBooks.length;
         recommendedBooks.push({ id: book.id, score });
     }
-    const recommendedList = recommendedBooks.sort((a, b) => b.score - a.score).slice(0, 10).map(book => book.id);
+    const recommendedList = recommendedBooks.sort((a, b) => b.score - a.score).slice(0, 12).map(book => book.id);
     return unreadBooks.filter(book => recommendedList.includes(book.id));
 }

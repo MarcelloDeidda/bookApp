@@ -70,7 +70,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // Set up local variables
 app.use((req, res, next) => {
-    if (!["/auth/login", "/"].includes(req.originalUrl)) {
+    if (!["/auth/login", "/auth/register", "/"].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl;
     }
     if (req.user) {

@@ -20,8 +20,8 @@ module.exports.logout = (req, res, next) => {
 // Register new user
 module.exports.register = async (req, res) => {
     try {
-        const { email, username, password } = req.body;
-        const user = new User({ email, username });
+        const { username, password } = req.body;
+        const user = new User({ username });
         const newUser = await User.register(user, password);
         req.login(newUser, (err) => {
             if (err) return next(err);
@@ -29,9 +29,6 @@ module.exports.register = async (req, res) => {
             res.redirect("/books");
         })
     } catch (e) {
-        if (e.message.indexOf("email") != -1) {
-            e.message = "A user with the give email address is already registered";
-        }
         req.flash("error", e.message);
         res.redirect("/auth/register");
     }
