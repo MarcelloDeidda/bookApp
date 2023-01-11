@@ -1,4 +1,3 @@
-- Add warning before deleting book
 - Add book categories
 - Check friends' pages
 - Work on index age
