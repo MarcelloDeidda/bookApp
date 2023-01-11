@@ -1,18 +1,5 @@
 - Add warning before deleting book
 - Add book categories
-- Add books to personal page
-- Create dashboard with personal library
-- Change password
-- Reset password
-- Confirm email
-
-Each user will have:
-- read books
-- favourite books
-- wishlist
-
-On the book page, the User can add it to one or more of these three.
-Wishlist / Read and Favourite are mutually exclusive. A book can be both in the
-Read and Favourite sections.
-
-The recommended book will be created ad hoc, comparing the favourite books.
+- Check friends' pages
+- Work on index age
+- Responsive layout

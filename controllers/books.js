@@ -111,11 +111,17 @@ module.exports.addToRead = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
-        user.readBooks.push(id);
-        user.save();
-        req.flash("success", "This book was added to your library!");
-        res.redirect(`/books/${id}`);
+        if (user.readBooks.indexOf(id) === -1 && user.wishlist.indexOf(id) === -1) {
+            user.readBooks.push(id);
+            user.save();
+            req.flash("success", "This book was added to your library!");
+            res.redirect(`/books/${id}`);
+        } else {
+            req.flash("error", "This book is already in your library!");
+            res.redirect(`/books/${id}`);
+        }
     } catch (e) {
+        const { id } = req.params;
         req.flash("error", e);
         res.redirect(`/books/${id}`);
     }
@@ -126,11 +132,20 @@ module.exports.removeFromRead = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
-        await user.readBooks.remove(id);
-        user.save();
-        req.flash("success", "This book was removed from your library!");
-        res.redirect(`/books/${id}`);
+        if (user.readBooks.indexOf(id) > -1) {
+            await user.readBooks.remove(id);
+            if (user.favouriteBooks.indexOf(id) > -1) {
+                user.favouriteBooks.remove(id);
+            }
+            user.save();
+            req.flash("success", "This book was removed from your library!");
+            res.redirect(`/books/${id}`);
+        } else {
+            req.flash("error", "This book is not in your library!");
+            res.redirect(`/books/${id}`);
+        }
     } catch (e) {
+        const { id } = req.params;
         req.flash("error", e);
         res.redirect(`/books/${id}`);
     }
@@ -141,11 +156,20 @@ module.exports.addToFavourite = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
-        user.favouriteBooks.push(id);
-        user.save();
-        req.flash("success", "This book was added to your favourites!");
-        res.redirect(`/books/${id}`);
+        if (user.favouriteBooks.indexOf(id) === -1 && user.wishlist.indexOf(id) === -1) {
+            user.favouriteBooks.push(id);
+            if (user.readBooks.indexOf(id) === -1) {
+                user.readBooks.push(id);
+            }
+            user.save();
+            req.flash("success", "This book was added to your favourites!");
+            res.redirect(`/books/${id}`);
+        } else {
+            req.flash("error", "This book is already in your library!");
+            res.redirect(`/books/${id}`);
+        }
     } catch (e) {
+        const { id } = req.params;
         req.flash("error", e);
         res.redirect(`/books/${id}`);
     }
@@ -156,11 +180,17 @@ module.exports.removeFromFavourite = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
-        await user.favouriteBooks.remove(id);
-        user.save();
-        req.flash("success", "This book was removed from your favourites!");
-        res.redirect(`/books/${id}`);
+        if (user.favouriteBooks.indexOf(id) > -1) {
+            await user.favouriteBooks.remove(id);
+            user.save();
+            req.flash("success", "This book was removed from your favourites!");
+            res.redirect(`/books/${id}`);
+        } else {
+            req.flash("error", "This book is not in your favourites!");
+            res.redirect(`/books/${id}`);
+        }
     } catch (e) {
+        const { id } = req.params;
         req.flash("error", e);
         res.redirect(`/books/${id}`);
     }
@@ -171,11 +201,17 @@ module.exports.addToWishlist = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
-        user.wishlist.push(id);
-        user.save();
-        req.flash("success", "This book was added to your wishlist!");
-        res.redirect(`/books/${id}`);
+        if (user.wishlist.indexOf(id) === -1 && user.readBooks.indexOf(id) === -1) {
+            user.wishlist.push(id);
+            user.save();
+            req.flash("success", "This book was added to your wishlist!");
+            res.redirect(`/books/${id}`);
+        } else {
+            req.flash("error", "This book is already in your library!");
+            res.redirect(`/books/${id}`);
+        }
     } catch (e) {
+        const { id } = req.params;
         req.flash("error", e);
         res.redirect(`/books/${id}`);
     }
@@ -186,11 +222,17 @@ module.exports.removeFromWishlist = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(req.user._id);
-        await user.wishlist.remove(id);
-        user.save();
-        req.flash("success", "This book was removed from your wishlist!");
-        res.redirect(`/books/${id}`);
+        if (user.wishlist.indexOf(id) > -1) {
+            await user.wishlist.remove(id);
+            user.save();
+            req.flash("success", "This book was removed from your wishlist!");
+            res.redirect(`/books/${id}`);
+        } else {
+            req.flash("error", "This book is not in your wishlist!");
+            res.redirect(`/books/${id}`);
+        }
     } catch (e) {
+        const { id } = req.params;
         req.flash("error", e);
         res.redirect(`/books/${id}`);
     }
