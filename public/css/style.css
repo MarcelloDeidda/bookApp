@@ -4,12 +4,6 @@
     line-height: 1.2
 }
 
-@media (min-width:1200px) {
-    .display-7 {
-        font-size: 1.2rem
-    }
-}
-
 #delete-icon {
     opacity: 0;
 }
@@ -23,8 +17,6 @@
 }
 
 .book-image {
-    width: 90%;
-    height: 360px;
     object-fit: cover;
 }
 
@@ -81,4 +73,28 @@
     background-image: url(https://images.unsplash.com/photo-1537495329792-41ae41ad3bf0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80);
     background-size: cover;
     background-position-y: bottom;
+}
+
+.review-box {
+    box-shadow: 5px 5px 5px #ccc;
+}
+
+@media (min-width:1200px) {
+    .display-7 {
+        font-size: 1.2rem
+    }
+}
+
+@media (max-width:768px) {
+    #show-text {
+        order: 1
+    }
+
+    #show-image {
+        order: 0
+    }
+
+    .show-btn {
+        display: none;
+    }
 }

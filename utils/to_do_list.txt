@@ -2,3 +2,4 @@
 - Check friends' pages
 - Work on index age
 - Responsive layout
+- Fix reviews
