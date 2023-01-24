@@ -1,5 +1,4 @@
 - Add book categories
 - Check friends' pages
-- Work on index age
-- Responsive layout
-- Fix reviews
+- Work on index page
+- Add empty text for search and reviews

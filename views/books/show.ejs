@@ -89,7 +89,6 @@
       <% if (currentUser) { %>
       <form class="col-12 mb-5 validated-form" action="/books/<%= book.id %>/reviews" method="post" novalidate>
         <div class="col-12 mb-3">
-          <label class="form-label" for="body">Review:</label>
           <textarea class="form-control" name="body" id="body" cols="30" rows="5" required></textarea>
         </div>
         <div class="col-12 text-center mb-3 mx-auto fs-1">
@@ -154,6 +153,9 @@
         <% } %>
         <% } %>
       </ul>
+      <% if (book.reviews.length === 0) { %>
+        <p class="display-7 text-center">No reviews have been added yet!</p>
+        <% } %>
     </div>
   </div>
   <div class="col-12 col-md-4 offset-md-1 my-5 px-5 px-md-2" id="show-image">
