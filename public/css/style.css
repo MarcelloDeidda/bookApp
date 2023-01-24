@@ -79,6 +79,43 @@
     box-shadow: 5px 5px 5px #ccc;
 }
 
+.review-rating,
+.review-delete {
+    display: none;
+}
+
+.review:hover .review-delete {
+    display: inline;
+}
+
+.link-unstyled,
+.link-unstyled:link,
+.link-unstyled:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.review-user {
+    transition: 200ms;
+}
+
+.review-user:hover {
+    color: #dc3545;
+    cursor: pointer;
+}
+
+.review-user:hover .review {
+    border-color: #dc3545;
+}
+
+.stars {
+    color: #DAA520;
+}
+
+.stars:hover {
+    cursor: pointer;
+}
+
 @media (min-width:1200px) {
     .display-7 {
         font-size: 1.2rem
