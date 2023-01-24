@@ -14,9 +14,9 @@
 
 <body class="vh-100">
     <main class="container-fluid vw-100 vh-100">
-        <div class="row">
-            <div class="col-6 vh-100" id="homepage-img"></div>
-            <div class="col-6 bg-dark py-5" style="color: white">
+        <div class="row" id="homepage">
+            <div class="col-12 col-sm-6 vh-100" id="homepage-img"></div>
+            <div class="col-12 col-sm-6 py-5" id="homepage-nav" style="color: white">
                 <% if (currentUser) { %>
                     <h1 class="display-1 mb-5 text-center">BookApp</h1>
                     <h2 class="display-6 text-center mb-5">Welcome Back, <%= currentUser.username %>!</h2>

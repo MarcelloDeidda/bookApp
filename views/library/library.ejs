@@ -4,7 +4,7 @@
 </h1>
 <div class="row d-flex justify-content-around">
   <% if (user.readBooks.length !=0) { %>
-  <a href="/library/<%=currentUser._id%>/read" class="col-6 my-3 list-element">
+  <a href="/library/<%=currentUser._id%>/read" class="col-12 col-md-6 my-5 my-md-3 list-element">
     <div class="row">
       <div class="col-12 d-flex px-4">
         <%for (let book of user.readBooks.sort((a, b)=> 0.5 - Math.random()).slice(0, 5)) {%>
@@ -12,17 +12,17 @@
         <%}%>
                     </div>
                     <div class="col-12">
-                        <h2 class="mt-2 display-6 text-center">Read Books</h2>
+                        <h2 class="mt-2 display-7 text-center">Read Books</h2>
                     </div>
                 </div>
             </a>
             <% } else { %>
-        <div class="col-6 my-3 d-flex justify-content-center align-items-center empty-list">
-          <p class="display-7">There are no read books in your library!</p>
+        <div class="col-12 col-md-6 my-5 my-md-3 d-flex justify-content-center align-items-center empty-list">
+          <p class="display-8">Empty Library</p>
         </div>
         <% } %>
         <% if (user.favouriteBooks.length !=0) { %>
-        <a href="/library/<%=currentUser._id%>/favourite" class="col-6 my-3 list-element">
+        <a href="/library/<%=currentUser._id%>/favourite" class="col-12 col-md-6 my-5 my-md-3 list-element">
           <div class="row">
             <div class="col-12 d-flex px-4">
               <%for (let book of user.favouriteBooks.sort((a, b)=> 0.5 - Math.random()).slice(0,
@@ -31,17 +31,17 @@
               <%}%>
                                 </div>
                                 <div class="col-12">
-                                    <h2 class="mt-2 display-6 text-center">Favourite Books</h2>
+                                    <h2 class="mt-2 display-7 text-center">Favourite Books</h2>
                                 </div>
                             </div>
                         </a>
                         <% } else { %>
-              <div class="col-6 my-3 d-flex justify-content-center align-items-center empty-list">
-                <p class="display-7">There are no favourite books in your library!</p>
+              <div class="col-12 col-md-6 my-5 my-md-3 d-flex justify-content-center align-items-center empty-list">
+                <p class="display-8">Empty Favs</p>
               </div>
               <% } %>
               <% if (user.wishlist.length !=0) { %>
-              <a href="/library/<%=currentUser._id%>/wishlist" class="col-6 my-3 list-element">
+              <a href="/library/<%=currentUser._id%>/wishlist" class="col-12 col-md-6 my-5 my-md-3 list-element">
                 <div class="row">
                   <div class="col-12 d-flex px-4">
                     <%for (let book of user.wishlist.sort((a, b)=> 0.5 -
@@ -50,17 +50,17 @@
                     <%}%>
                                             </div>
                                             <div class="col-12">
-                                                <h2 class="mt-2 display-6 text-center">Wishlist</h2>
+                                                <h2 class="mt-2 display-7 text-center">Wishlist</h2>
                                             </div>
                                         </div>
                                     </a>
                                     <% } else { %>
-                    <div class="col-6 my-3 d-flex justify-content-center align-items-center empty-list">
-                      <p class="display-7">There are no books in your wishlist!</p>
+                    <div class="col-12 col-md-6 my-5 my-md-3 d-flex justify-content-center align-items-center empty-list">
+                      <p class="display-8">Empty Wishlist</p>
                     </div>
                     <% } %>
                     <% if (user.favouriteBooks.length> 4) { %>
-                    <a href="/library/<%=currentUser._id%>/recommended" class="col-6 my-3 list-element">
+                    <a href="/library/<%=currentUser._id%>/recommended" class="col-12 col-md-6 my-5 my-md-3 list-element">
                       <div class="row">
                         <div class="col-12 d-flex px-4">
                           <%for (let book of recommendedBooks.sort((a, b)=> 0.5 -
@@ -69,15 +69,14 @@
                           <%}%>
                                                         </div>
                                                         <div class="col-12">
-                                                            <h2 class="mt-2 display-6 text-center">Recommended</h2>
+                                                            <h2 class="mt-2 display-7 text-center">Recommended</h2>
                                                         </div>
                                                     </div>
                                                 </a>
                                                 <% } else { %>
-                          <div class="col-6 my-3 d-flex justify-content-center align-items-center empty-list">
-                            <p class="display-7">Please add at least 5 favourite books to
-                              get recommendations!
-                            </p>
+                          <div class="col-12 col-md-6 my-5 my-md-3 d-flex flex-column justify-content-center align-items-center empty-list">
+                            <p class="display-8">No reccomendations available.</p>
+                            <p class="display-8">Add 5 books to your Favs.</p>
                           </div>
                           <% } %>
                         </div>

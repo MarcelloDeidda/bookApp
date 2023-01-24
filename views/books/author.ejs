@@ -3,8 +3,8 @@
   </h1>
   <div class="row pt-5">
     <%for (let book of booksByAuthor) {%>
-      <a class="btn col-3 border-0 hoverable" href="/books/<%=book.id%>">
-        <img src="<%= book.imgUrl %>" class="img-fluid book-image mb-2" alt="">
+      <a class="btn col-6 col-md-3 border-0 hoverable" href="/books/<%=book.id%>">
+        <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
       </a>
       <%}%>
   </div>
