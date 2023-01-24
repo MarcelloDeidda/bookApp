@@ -3,7 +3,7 @@
   </h1>
   <div class="row pt-5">
     <%for (let book of books) {%>
-      <a class="btn col-6 col-md-3 border-0" href="/books/<%=book.id%>">
+      <a class="btn col-6 col-md-3 border-0 my-4" href="/books/<%=book.id%>">
         <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
         <p>
           <% for (let i=0; i < book.rating; i++) {%>
