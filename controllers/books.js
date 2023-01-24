@@ -1,6 +1,7 @@
 const Book = require("../models/book");
 const User = require("../models/user");
 const { sortBySurname } = require("../utils/utils.js");
+const categories = require("../utils/categories");
 
 // Show books from database
 module.exports.index = async (req, res) => {
@@ -36,7 +37,7 @@ module.exports.showAuthor = async (req, res) => {
 
 // Render New Book form
 module.exports.renderNew = (req, res) => {
-    res.render("books/new");
+    res.render("books/new", { categories });
 }
 
 // Show book details
@@ -63,7 +64,7 @@ module.exports.renderEdit = async (req, res) => {
         req.flash("error", "Cannot find that book!");
         return res.redirect("/books");
     }
-    res.render("books/edit", { book });
+    res.render("books/edit", { book, categories });
 }
 
 // Create new book

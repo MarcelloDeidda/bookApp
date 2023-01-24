@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review");
 const User = require("./user");
+const categories = require("../utils/categories");
 
 const bookSchema = new Schema({
     title: String,
@@ -9,6 +10,11 @@ const bookSchema = new Schema({
     year: Number,
     summary: String,
     imgUrl: String,
+    category: {
+        type: String,
+        enum: categories,
+        default: "None"
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId,

@@ -18,7 +18,7 @@ const bookRouter = require("./routes/books");
 const reviewRouter = require("./routes/reviews");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
-const usersRouter = require("./routes/users");
+const communityRouter = require("./routes/community");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/bookAppDatabase";
@@ -104,7 +104,7 @@ app.use("/books/:id/reviews", reviewRouter);
 app.use("/library", userRouter);
 
 // Serve "users" routes
-app.use("/community", usersRouter);
+app.use("/community", communityRouter);
 
 app.get("/", (req, res) => {
     res.render("home");

@@ -1,7 +1,7 @@
 <% layout("./layouts/boilerplate") %>
-    <a class="text-decoration-none text-dark text-center mb-5 hoverable" href="/library/<%= currentUser.id %>">
+    <a class="text-decoration-none text-dark text-center mb-5 hoverable" href="/community/<%=username%>">
         <h1 class="display-3">
-            <%= currentUser.username%>'s Library
+            <%= username%>'s Library
         </h1>
     </a>
     <h2 class="display-5 text-center"><%= role %></h2>

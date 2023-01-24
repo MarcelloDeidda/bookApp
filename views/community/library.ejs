@@ -4,9 +4,9 @@
 </h1>
 <div class="row d-flex justify-content-around">
   <% if (user.readBooks.length !=0) { %>
-  <a href="/library/<%=currentUser._id%>/read" class="col-12 col-md-6 my-5 my-md-3 list-element">
+  <a href="/community/<%=user.username%>/read" class="col-12 col-md-6 my-5 my-md-3 list-element">
     <div class="row">
-      <div class="col-12 d-flex px-4">
+      <div class="col-12 d-flex px-4 library">
         <%for (let book of user.readBooks.sort((a, b)=> 0.5 - Math.random()).slice(0, 5)) {%>
         <img src="<%= book.imgUrl %>" class="img-fluid book-preview" alt="">
         <%}%>
@@ -22,9 +22,9 @@
         </div>
         <% } %>
         <% if (user.favouriteBooks.length !=0) { %>
-        <a href="/library/<%=currentUser._id%>/favourite" class="col-12 col-md-6 my-5 my-md-3 list-element">
+        <a href="/community/<%=user.username%>/favourite" class="col-12 col-md-6 my-5 my-md-3 list-element">
           <div class="row">
-            <div class="col-12 d-flex px-4">
+            <div class="col-12 d-flex px-4 library">
               <%for (let book of user.favouriteBooks.sort((a, b)=> 0.5 - Math.random()).slice(0,
                                         5)) {%>
               <img src="<%= book.imgUrl %>" class="img-fluid book-preview" alt="">
@@ -41,9 +41,9 @@
               </div>
               <% } %>
               <% if (user.wishlist.length !=0) { %>
-              <a href="/library/<%=currentUser._id%>/wishlist" class="col-12 col-md-6 my-5 my-md-3 list-element">
+              <a href="/community/<%=user.username%>/wishlist" class="col-12 col-md-6 my-5 my-md-3 list-element">
                 <div class="row">
-                  <div class="col-12 d-flex px-4">
+                  <div class="col-12 d-flex px-4 library">
                     <%for (let book of user.wishlist.sort((a, b)=> 0.5 -
                                                     Math.random()).slice(0, 5)) {%>
                     <img src="<%= book.imgUrl %>" class="img-fluid book-preview" alt="">

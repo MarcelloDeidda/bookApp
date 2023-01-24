@@ -29,7 +29,8 @@ module.exports.bookSchema = Joi.object({
     author: Joi.string().required().escapeHTML(),
     year: Joi.number().required().min(0),
     summary: Joi.string().allow(null, "").escapeHTML(),
-    imgUrl: Joi.string().allow(null, "").escapeHTML()
+    imgUrl: Joi.string().allow(null, "").escapeHTML(),
+    category: Joi.string().required().escapeHTML()
 }).required()
 
 // Review schema for validation

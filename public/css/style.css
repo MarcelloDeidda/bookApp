@@ -48,6 +48,10 @@
     opacity: 0.5;
 }
 
+.library {
+    /*box-shadow: 1px 1px 1px #ccc;*/
+}
+
 .link-unstyled,
 .link-unstyled:link,
 .link-unstyled:hover {
