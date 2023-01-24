@@ -84,7 +84,7 @@
     <% } %>
 
     <!-- Reviews -->
-    <div class="row my-5 mx-4 mx-sm-0 px-2 px-sm-5 py-5 border border-secondary border-opacity-50 rounded review-box">
+    <div class="row my-5 mx-3 mx-sm-0 px-1 px-sm-5 py-5 border border-secondary border-opacity-50 rounded review-box">
       <h3 class="display-6 text-center mb-5">Reviews</h3>
       <% if (currentUser) { %>
       <form class="col-12 mb-5 validated-form" action="/books/<%= book.id %>/reviews" method="post" novalidate>
@@ -112,7 +112,7 @@
         <% if (currentUser && (review.author.equals(currentUser._id) || isAdmin)) { %>
         <a data-bs-toggle="modal" data-bs-target="#deleteReviewModal<%=review.id%>" class="review-user link-unstyled">
           <% } %>
-          <div class="review card mb-3 px-3">
+          <div class="review card mb-3 p-0 px-lg-3 py-lg-2">
             <div class="card-body review-card">
               <h4 class="card-title">
                 <% for (let i = 0; i < 5; i++) {%>
