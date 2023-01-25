@@ -1,28 +1,106 @@
-# === Book App - IN PROGRESS ===
+# === BookApp - IN PROGRESS ===
 
-1.Project name
+1. Project
 
-2.Description
+2. Development
 
-3.Contents
+3. Contents
 
-4.Installation
+4. Installation
 
-5.Previews
+5. Previews
 
-## 1.Project name:
-
-Book App
+## 1.The project:
 
 
-## 2.Description:
+BookApp is an online platform for book lovers an readers. It allows users to discover new books, rate and review books they've read and create personalized bookshelves.
 
-APP IN PROGRESS!
+This webapp holds a database of books and any user can contribute by uploading info about books which haven't been added yet. The app also provides some recommendations based on the user's favourite books.
 
-This web app manages a database of books, implementing CRUD operations, as well as searching by keyword and adding reviews.
+The aim of this project is to create a simple social media platform where users can follow each other and take inspiration from each other's libraries, as well as recommend books to friends.
 
-The app is developed with node.js, express.js, mongoDB (via mongoose).
 
+## 2.Development:
+
+
+// This app (as well as this README) is still in progress as of today.
+
+BookApp is developed with a Node.js runtime environment. The data is stored in a MongoDB database, connected to Node.js via Mongoose and hosted by MongoDB Atlas. The server is managed with Express.js.
+
+The dinamic views are written with EJS templating language. The frontend dasign mainly relies on Bootstrap v5.2, in addition to some CSS custom styles.
+
+Register and Login functionalities, as well as safe password handling are managed by Passport. Custom middleware controls basic authorisation. Some additional security is provided with express-mongo-sanitize and sanitize-html. Other NPM packages used are express-session, connect-flash, JOI.
+
+
+### 2.1.Models
+
+
+The database is articulated in three models: Book, Review and User.
+
+The Book model consists of:
+- title (String)
+- author (String)
+- year (Number)
+- summary (String)
+- imgUrl (String)
+- category (Array of enums)
+- reviews (Array of Reviews)
+- createdBy (User)
+
+The Review model consists of:
+- body (String)
+- rating (Number)
+- author (User)
+
+The User model consists of:
+- readBooks (Array of Books)
+- favouriteBooks (Array of Books)
+- wishlist (Array of Books)
+
+Username and Password are managed by Passport, and therefore are not part of the User model.
+
+
+### 2.2.Routes and Controllers
+
+
+The are five different routers with corresponding controllers: books, reviews, auth, user, community.
+
+The books router manages the following actions:
+- Show the Explore section, containing all books in the database
+- Search books or authors by keyword
+- Browse all authors
+- Show all books written by a given author
+- Book CRUD operations: create, read, update, delete a book.
+- Add or remove book to/from personal library (read, favourite, wishlist)
+
+The reviews router manages the following actions:
+- Add or remove a book review
+
+The auth router manages the following actions:
+- Register with username and password
+- Login and logout
+
+The user router manages the following actions:
+- Show one's personal libraries
+- Browse read, favourite and wishlist books
+- Show recommended books based on favourite books
+
+The community router manages the following actions:
+- Show a different user's library
+- Browse a different user's read, favourite and wishlist books
+
+
+### 2.3.Utils
+
+
+The "utils" folder contains some helper files:
+
+- "catchAsync.js" contains a middleware that catches and handles async errors
+- "ExpressError.js" contains a custom Error class that sends an error message and a status code
+- "schemas.js" contains JOI validation schemas for books and reviews
+- "middleware.js" contains authorization and validation functions
+- "similarity.js" contains a function that compares favourite books with unread books and returns a list of recommended books
+- "categories.js" contains a list of book categories that are used as enum for the Book model
 
 ## 3.Contents:
 
@@ -36,7 +114,7 @@ The app is developed with node.js, express.js, mongoDB (via mongoose).
 
 - views/ - Contains .ejs templates
 
-- index.js - Contains the main app, with the server set up
+- index.js - Contains the main app, with the server setup
 
 - package.json / package-lock.js - Contains npm project info
 
