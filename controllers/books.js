@@ -71,6 +71,7 @@ module.exports.renderEdit = async (req, res) => {
 module.exports.createBook = async (req, res) => {
     try {
         req.body.createdBy = req.user._id;
+        console.log(typeof req.category)
         const newBook = new Book(req.body);
         await newBook.save();
         req.flash("success", "Successfully created new book!");

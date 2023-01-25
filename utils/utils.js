@@ -1,4 +1,4 @@
-// Swap name and surname order
+/*// Swap name and surname order
 function swapNames(str) {
     return (str.substring(str.indexOf(" ") + 1, str.length)) + " " + str.substring(0, str.indexOf(" "));
 }
@@ -11,5 +11,21 @@ function sortBySurname(list) {
     result_list = [...new Set(list.sort())];
     return result_list.map(elem => swapNames(elem));
 }
+*/
+
+function sortBySurname(names) {
+    names.sort(function(a, b) {
+      var surnameA = a.split(" ")[a.split(" ").length-1];
+      var surnameB = b.split(" ")[b.split(" ").length-1];
+      if (surnameA < surnameB) {
+        return -1;
+      }
+      if (surnameA > surnameB) {
+        return 1;
+      }
+      return 0;
+    });
+    return names;
+  }
 
 module.exports.sortBySurname = sortBySurname;

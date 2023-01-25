@@ -30,7 +30,7 @@ module.exports.bookSchema = Joi.object({
     year: Joi.number().required().min(0),
     summary: Joi.string().allow(null, "").escapeHTML(),
     imgUrl: Joi.string().allow(null, ""),
-    category: Joi.array().required()
+    category: Joi.alternatives().try(Joi.array(), Joi.string()).required()
 }).required()
 
 // Review schema for validation

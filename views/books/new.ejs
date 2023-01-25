@@ -22,7 +22,9 @@
           <label class="form-label" for="category">Categories</label>
           <select class="form-select" multiple aria-label="Category select" name="category" id="category" size="9">
             <% for (let category of categories) { %>
+            <% if (category !== "None") { %>
             <option value="<%=category %>"><%=category %></option>
+            <% } %>
             <% } %>
           </select>
         </div>
@@ -36,7 +38,7 @@
         <input class="form-control" id="imgUrl" name="imgUrl" type="text">
       </div>
       <div class="col-12 mt-3 mb-5 d-grid gap-2">
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" id="submit" class="btn btn-success">Save</button>
       </div>
     </form>
   </div>

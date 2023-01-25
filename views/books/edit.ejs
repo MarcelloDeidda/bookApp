@@ -25,7 +25,9 @@
           <label class="form-label" for="category">Categories</label>
           <select class="form-select" multiple aria-label="Category select" name="category" id="category" size="9">
             <% for (let category of categories) { %>
+            <% if (category !== "None") { %>
             <option value="<%=category %>" <%if (book.category.includes(category)) {%>selected <% } %>><%=category %></option>
+            <% } %>
             <% } %>
           </select>
         </div>
