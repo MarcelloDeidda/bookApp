@@ -1,8 +1,18 @@
 # === BookApp - IN PROGRESS ===
 
-[1. Project](#the-project)
+[1.Project](#the-project)
 
-2. Development
+///
+
+[2.Development](#development)
+
+[2.1.Models](#models)
+
+[2.2.Routes and Controllers](#routes-and-controllers)
+
+[2.3.Utils](#utils)
+
+///
 
 3. Contents
 
@@ -20,7 +30,7 @@ This webapp holds a database of books and any user can contribute by uploading i
 The aim of this project is to create a simple social media platform where users can follow each other and take inspiration from each other's libraries, as well as recommend books to friends.
 
 
-## 2.Development
+## <a name="development"></a>2.Development
 
 
 // This app (as well as this README) is still in progress as of today.
@@ -32,7 +42,7 @@ The dinamic views are written with EJS templating language. The frontend dasign 
 Register and Login functionalities, as well as safe password handling are managed by Passport. Custom middleware controls basic authorisation. Some additional security is provided with express-mongo-sanitize and sanitize-html. Other NPM packages used are express-session, connect-flash, JOI.
 
 
-### 2.1.Models
+### <a name="models"></a>2.1.Models
 
 
 The database is articulated in three models: Book, Review and User.
@@ -60,7 +70,7 @@ The User model consists of:
 Username and Password are managed by Passport, and therefore are not part of the User model.
 
 
-### 2.2.Routes and Controllers
+### <a name="routes-and-controller"></a>2.2.Routes and Controllers
 
 
 The are five different routers with corresponding controllers: books, reviews, auth, user, community.
@@ -90,7 +100,7 @@ The community router manages the following actions:
 - Browse a different user's read, favourite and wishlist books
 
 
-### 2.3.Utils
+### <a name="utils"></a>2.3.Utils
 
 
 The "utils" folder contains some helper files:
