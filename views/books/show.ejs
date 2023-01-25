@@ -13,10 +13,14 @@
       <dd class="col-sm-8"><a class="link-secondary" href="/books/authors/<%= book.author %>">
           <%=book.author%>
         </a></dd>
-        <dt class="col-sm-4">Category</dt>
-        <dd class="col-sm-8"><a class="link-secondary" href="">
-            <%=book.category%>
-          </a></dd>
+      <dt class="col-sm-4">Category</dt>
+      <dd class="col-sm-8">
+        <% for (let category of book.category) { %>
+        <a class="link-secondary me-2" href="/<%=category%>">
+          <%=category%>
+        </a>
+        <% } %>
+      </dd>
       <dt class="col-sm-4">Year of publication</dt>
       <dd class="col-sm-8">
         <%=book.year%>
@@ -158,8 +162,8 @@
         <% } %>
       </ul>
       <% if (book.reviews.length === 0) { %>
-        <p class="display-7 text-center">No reviews have been added yet!</p>
-        <% } %>
+      <p class="display-7 text-center">No reviews have been added yet!</p>
+      <% } %>
     </div>
   </div>
   <div class="col-12 col-md-4 offset-md-1 my-5 px-5 px-md-2" id="show-image">

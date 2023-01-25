@@ -6,25 +6,29 @@
   </h2>
   <div class="col-md-8 col-lg-6">
     <form class="row validated-form" method="POST" action="/books/<%= book.id %>?_method=PUT" novalidate>
-      <div class="col-6 mb-3">
-        <label class="form-label" for="title">Title</label>
-        <input class="form-control" id="title" name="title" type="text" required value="<%= book.title %>">
+      <div class="col-6">
+        <div class="col-12 mb-3">
+          <label class="form-label" for="title">Title</label>
+          <input class="form-control" id="title" name="title" type="text" required value="<%= book.title %>">
+        </div>
+        <div class="col-12 mb-3">
+          <label class="form-label" for="author">Author</label>
+          <input class="form-control" id="author" name="author" type="text" required value="<%= book.author %>">
+        </div>
+        <div class="col-12 mb-3">
+          <label class="form-label" for="year">Year of publication</label>
+          <input class="form-control" id="year" name="year" type="number" required value="<%= book.year %>">
+        </div>
       </div>
-      <div class="col-6 mb-3">
-        <label class="form-label" for="category">Category</label>
-        <select class="form-select" aria-label="Category select" name="category" id="category">
-          <% for (let category of categories) { %>
-            <option value="<%=category %>" <%if (category === book.category) {%>selected <% } %>><%=category %></option>
-          <% } %>
-        </select>
-      </div>
-      <div class="col-6 mb-3">
-        <label class="form-label" for="author">Author</label>
-        <input class="form-control" id="author" name="author" type="text" required value="<%= book.author %>">
-      </div>
-      <div class="col-6 mb-3">
-        <label class="form-label" for="year">Year of publication</label>
-        <input class="form-control" id="year" name="year" type="number" required value="<%= book.year %>">
+      <div class="col-6">
+        <div class="col-12 mb-3">
+          <label class="form-label" for="category">Categories</label>
+          <select class="form-select" multiple aria-label="Category select" name="category" id="category" size="9">
+            <% for (let category of categories) { %>
+            <option value="<%=category %>" <%if (book.category.includes(category)) {%>selected <% } %>><%=category %></option>
+            <% } %>
+          </select>
+        </div>
       </div>
       <div class="col-12 mb-3">
         <label class="form-label" for="summary">Summary</label>

@@ -11,7 +11,7 @@ const bookSchema = new Schema({
     summary: String,
     imgUrl: String,
     category: {
-        type: String,
+        type: [String],
         enum: categories,
         default: "None"
     },
