@@ -1,6 +1,6 @@
 # === BookApp - IN PROGRESS ===
 
-1. Project
+[1. Project](#the-project)
 
 2. Development
 
@@ -10,7 +10,7 @@
 
 5. Previews
 
-## 1.The project:
+## <a name="the-project"></a>1.The project
 
 
 BookApp is an online platform for book lovers an readers. It allows users to discover new books, rate and review books they've read and create personalized bookshelves.
@@ -20,7 +20,7 @@ This webapp holds a database of books and any user can contribute by uploading i
 The aim of this project is to create a simple social media platform where users can follow each other and take inspiration from each other's libraries, as well as recommend books to friends.
 
 
-## 2.Development:
+## 2.Development
 
 
 // This app (as well as this README) is still in progress as of today.
