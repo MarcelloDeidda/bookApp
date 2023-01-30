@@ -12,7 +12,6 @@ const categories = [
     "Fiction",
     "LGBTQ+",
     "Graphic Novels",
-    "Historical Fiction",
     "History",
     "Horror",
     "Humor and Comedy",

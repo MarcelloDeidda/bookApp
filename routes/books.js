@@ -19,6 +19,12 @@ router.get("/authors", catchAsync(bookController.showAuthors));
 // GET authors/author: show author details
 router.get("/authors/:author", catchAsync(bookController.showAuthor));
 
+// GET authors: show categories from database
+router.get("/categories", catchAsync(bookController.showCategories));
+
+// GET authors/author: show category details
+router.get("/categories/:category", catchAsync(bookController.showCategory));
+
 // GET new: show new book form
 router.get("/new", isLoggedIn, bookController.renderNew);
 

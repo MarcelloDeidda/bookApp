@@ -1,0 +1,11 @@
+<% layout("./layouts/boilerplate") %>
+  <h1 class="display-4 text-center mb-5">Explore Categories</h1>
+  <div class="row">
+    <%for (let category of categories) {%>
+      <a class="col-12 col-sm-6 col-lg-4 btn py-4 hoverable" href="categories/<%=category%>">
+        <h2>
+          <%=category%>
+        </h2>
+      </a>
+      <%}%>
+  </div>

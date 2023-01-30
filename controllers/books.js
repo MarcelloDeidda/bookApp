@@ -35,6 +35,22 @@ module.exports.showAuthor = async (req, res) => {
     res.render("books/author", { booksByAuthor, author });
 }
 
+// Show authors from database
+module.exports.showCategories = async (req, res) => {
+    res.render("books/categories", { categories });
+}
+
+// Show books by author
+module.exports.showCategory = async (req, res) => {
+    const { category } = req.params;
+    const booksByCategory = await Book.find({ category });
+    if (!categories.includes(category)) {
+        req.flash("error", "Cannot find that category!");
+        return res.redirect("/books/categories");
+    }
+    res.render("books/category", { booksByCategory, category });
+}
+
 // Render New Book form
 module.exports.renderNew = (req, res) => {
     res.render("books/new", { categories });

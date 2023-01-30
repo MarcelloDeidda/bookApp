@@ -1,0 +1,13 @@
+<% layout("./layouts/boilerplate") %>
+  <h1 class="display-4 text-center mb-5"><%=category%>
+  </h1>
+  <div class="row pt-5">
+    <%for (let book of booksByCategory) {%>
+      <a class="btn col-6 col-md-3 border-0 hoverable my-4" href="/books/<%=book.id%>">
+        <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
+      </a>
+      <%}%>
+      <% if (booksByCategory.length === 0) { %>
+        <p class="display-7 text-center">Sorry, we couldn't find anything!</p>
+        <% } %>
+  </div>
