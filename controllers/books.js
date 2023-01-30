@@ -5,15 +5,49 @@ const categories = require("../utils/categories");
 
 // Show books from database
 module.exports.index = async (req, res) => {
+    let { order } = req.query;
     const books = await Book.find({});
-    res.render("books/index", { books })
+    let bookList = [];
+    switch (order) {
+        case "title":
+            bookList = books.sort((a, b) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }));
+            break;
+        case "yearAsc":
+            bookList = books.sort((a, b) => a.year - b.year);
+            break;
+        case "yearDesc":
+            bookList = books.sort((a, b) => b.year - a.year);
+            break;
+        default:
+            bookList = books.sort((a, b) => 0.5 - Math.random());
+            order = "random"
+            break;
+    }
+    res.render("books/index", { books: bookList, order });
 }
 
 // Search books by title or author
 module.exports.search = async (req, res) => {
     const { search } = req.query;
+    let { order } = req.query;
     const books = await Book.find({ $or: [{ title: { $regex: search, $options: "i" } }, { author: { $regex: search, $options: "i" } }] });
-    res.render("books/search", { books, search });
+    let bookList = [];
+    switch (order) {
+        case "title":
+            bookList = books.sort((a, b) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }));
+            break;
+        case "yearAsc":
+            bookList = books.sort((a, b) => a.year - b.year);
+            break;
+        case "yearDesc":
+            bookList = books.sort((a, b) => b.year - a.year);
+            break;
+        default:
+            bookList = books.sort((a, b) => 0.5 - Math.random());
+            order = "random"
+            break;
+    }
+    res.render("books/search", { books: bookList, order, search });
 }
 
 // Show authors from database
@@ -27,12 +61,29 @@ module.exports.showAuthors = async (req, res) => {
 // Show books by author
 module.exports.showAuthor = async (req, res) => {
     const { author } = req.params;
+    let { order } = req.query;
     const booksByAuthor = await Book.find({ author });
     if (!booksByAuthor[0]) {
         req.flash("error", "Cannot find that author!");
         return res.redirect("/books/authors");
     }
-    res.render("books/author", { booksByAuthor, author });
+    let bookList = [];
+    switch (order) {
+        case "title":
+            bookList = booksByAuthor.sort((a, b) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }));
+            break;
+        case "yearAsc":
+            bookList = booksByAuthor.sort((a, b) => a.year - b.year);
+            break;
+        case "yearDesc":
+            bookList = booksByAuthor.sort((a, b) => b.year - a.year);
+            break;
+        default:
+            bookList = booksByAuthor.sort((a, b) => 0.5 - Math.random());
+            order = "random"
+            break;
+    }
+    res.render("books/author", { order, booksByAuthor: bookList, author });
 }
 
 // Show authors from database
@@ -43,12 +94,29 @@ module.exports.showCategories = async (req, res) => {
 // Show books by author
 module.exports.showCategory = async (req, res) => {
     const { category } = req.params;
-    const booksByCategory = await Book.find({ category });
     if (!categories.includes(category)) {
         req.flash("error", "Cannot find that category!");
         return res.redirect("/books/categories");
     }
-    res.render("books/category", { booksByCategory, category });
+    let { order } = req.query;
+    const booksByCategory = await Book.find({ category });
+    let bookList = [];
+    switch (order) {
+        case "title":
+            bookList = booksByCategory.sort((a, b) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }));
+            break;
+        case "yearAsc":
+            bookList = booksByCategory.sort((a, b) => a.year - b.year);
+            break;
+        case "yearDesc":
+            bookList = booksByCategory.sort((a, b) => b.year - a.year);
+            break;
+        default:
+            bookList = booksByCategory.sort((a, b) => 0.5 - Math.random());
+            order = "random"
+            break;
+    }
+    res.render("books/category", { booksByCategory: bookList, order, category });
 }
 
 // Render New Book form

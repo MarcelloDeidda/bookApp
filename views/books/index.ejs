@@ -1,9 +1,19 @@
 <% layout("./layouts/boilerplate") %>
-    <h1 class="display-3 text-center mb-5">Explore Books</h1>
-    <div class="row pt-5">
-        <%for (let book of books.sort((a, b) => 0.5 - Math.random())) {%>
-            <a class="btn col-6 col-md-3 border-0 my-4 hoverable" href="/books/<%=book.id%>">
-                <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
-            </a>
-            <%}%>
+<h1 class="display-3 text-center mb-5">Explore Books</h1>
+<div class="btn-group col-6 offset-3">
+  <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasOrder" aria-controls="offcanvasOrder">
+    Order
+  </button>
+  <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
+    Search
+  </button>
+</div>
+<div class="row pt-5">
+  <%for (let book of books) {%>
+  <a class="btn col-6 col-md-3 border-0 my-4 hoverable" href="/books/<%=book.id%>">
+    <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
+  </a>
+  <%}%>
     </div>
+    <%- include("../partials/offcanvas-order") %>
+    <%- include("../partials/offcanvas-search") %>

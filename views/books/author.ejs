@@ -1,10 +1,16 @@
 <% layout("./layouts/boilerplate") %>
-  <h1 class="display-4 text-center mb-5"><%=author%>
-  </h1>
-  <div class="row pt-5">
-    <%for (let book of booksByAuthor) {%>
-      <a class="btn col-6 col-md-3 border-0 hoverable my-4" href="/books/<%=book.id%>">
-        <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
-      </a>
-      <%}%>
+<h1 class="display-4 text-center mb-5"><%=author%>
+</h1>
+<div class="btn-group col-4 offset-4">
+  <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasOrder" aria-controls="offcanvasOrder">
+    Order
+  </button>
+</div>
+<div class="row pt-5">
+  <%for (let book of booksByAuthor) {%>
+  <a class="btn col-6 col-md-3 border-0 hoverable my-4" href="/books/<%=book.id%>">
+    <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
+  </a>
+  <%}%>
   </div>
+  <%- include("../partials/offcanvas-order") %>
