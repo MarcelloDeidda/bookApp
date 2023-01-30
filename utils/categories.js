@@ -30,6 +30,7 @@ const categories = [
     "Science Fiction",
     "Self Help",
     "Short Stories",
+    "Society",
     "Spirituality",
     "Sports",
     "Thriller",

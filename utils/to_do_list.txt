@@ -1,2 +1,2 @@
 - Check friends' pages
-- Work on index page
+- Remove none cat

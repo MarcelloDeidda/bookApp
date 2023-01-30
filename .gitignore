@@ -2,3 +2,4 @@ previews/
 .env
 node_modules/
 utils/seeds.js
+utils/to_do_list.txt
