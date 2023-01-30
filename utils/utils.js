@@ -25,7 +25,7 @@ function sortBySurname(names) {
       }
       return 0;
     });
-    return names;
+    return new Set(names);
   }
 
 module.exports.sortBySurname = sortBySurname;
