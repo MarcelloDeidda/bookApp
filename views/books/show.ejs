@@ -25,6 +25,16 @@
       <dd class="col-sm-8">
         <%=book.year%>
       </dd>
+      <dt class="col-sm-4">Rating</dt>
+      <dd class="col-sm-8">
+        <% for (let i = 0; i < 5; i++) {%>
+          <% if (i < book.rating) { %>
+          <span>&#9733;</span>
+          <% } else {%>
+          <span>&#9734;</span>
+          <% } %>
+          <% } %>
+      </dd>
       <dt class="col-sm-4">Summary</dt>
       <dd class="col-sm-8">
         <%=book.summary%>

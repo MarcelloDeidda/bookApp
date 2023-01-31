@@ -23,9 +23,6 @@ module.exports.index = async (req, res) => {
             order = "random"
             break;
     }
-    for (let book of bookList) {
-        console.log(book.rating);
-    }
     res.render("books/index", { books: bookList, order });
 }
 
