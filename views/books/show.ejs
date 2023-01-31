@@ -35,9 +35,9 @@
     <div class="row mb-4">
       <div class="col-12 btn-group" role="group">
         <% if (!currentUser.readBooks.includes(book.id)) { %>
-        <a class="col-12 col-sm-4 btn btn-outline-dark <% if (currentUser.wishlist.includes(book.id)) {%>disabled<% } %>" href="/books/<%= book.id %>/read">+ Library</a>
+        <a class="col-12 col-sm-4 btn btn-outline-dark <% if (currentUser.wishlist.includes(book.id)) {%>disabled<% } %>" href="/books/<%= book.id %>/read">+ Read</a>
         <% } else {%>
-        <a class="col-12 col-sm-4 btn btn-dark" href="/books/<%= book.id %>/read/remove">Library</a>
+        <a class="col-12 col-sm-4 btn btn-dark" href="/books/<%= book.id %>/read/remove">Read</a>
         <% } %>
         <% if (!currentUser.favouriteBooks.includes(book.id)) { %>
         <a class="col-12 col-sm-4 btn btn-outline-dark <% if (currentUser.wishlist.includes(book.id)) {%>disabled<% } %>" href="/books/<%= book.id %>/favourite">+ Favs</a>
