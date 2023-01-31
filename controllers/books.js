@@ -6,7 +6,7 @@ const categories = require("../utils/categories");
 // Show books from database
 module.exports.index = async (req, res) => {
     let { order } = req.query;
-    const books = await Book.find({});
+    const books = await Book.find({}).populate("reviews");
     let bookList = [];
     switch (order) {
         case "title":
@@ -22,6 +22,9 @@ module.exports.index = async (req, res) => {
             bookList = books.sort((a, b) => 0.5 - Math.random());
             order = "random"
             break;
+    }
+    for (let book of bookList) {
+        console.log(book.rating);
     }
     res.render("books/index", { books: bookList, order });
 }
