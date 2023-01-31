@@ -2,51 +2,6 @@
 
 [Give it a try!](https://book-app-e94j.onrender.com/ "BookApp")
 
-///
-
-[1.The Project](#the-project)
-
-///
-
-[2.Development](#development)
-
-[2.1.Models](#models)
-
-[2.2.Routes and Controllers](#routes-and-controllers)
-
-[2.3.Utils](#utils)
-
-///
-
-[3.Usage](#usage)
-
-[3.1.Portal](#portal)
-
-[3.2.Authentication](#auth)
-
-[3.3.Navbar](#nav)
-
-[3.4.Explore](#explore)
-
-[3.5.Show](#show)
-
-[3.6.Library](#library)
-
-[3.7.Coming Soon](#coming-soon)
-
-///
-
-[4.Previews](#preview)
-
-[4.1.Explore Category Page](#explore-preview)
-
-[4.2.Show Page](#show-preview)
-
-[4.3.Edit Page](#edit-preview)
-
-[4.4.Library Page](#library-preview)
-
-
 
 ## <a name="the-project"></a>1.The project
 
