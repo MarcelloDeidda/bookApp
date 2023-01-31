@@ -1,4 +1,8 @@
-# === BookApp - IN PROGRESS ===
+# === BookApp === 
+
+[Give it a try!](https://book-app-e94j.onrender.com/ "BookApp")
+
+///
 
 [1.Project](#the-project)
 
@@ -14,11 +18,21 @@
 
 ///
 
-3. Contents
+[3.Usage](#usage)
 
-4. Installation
+[3.1.Portal](#portal)
 
-5. Previews
+[3.2.Authentication](#auth)
+
+[3.3.Navbar](#nav)
+
+[3.4.Explore](#explore)
+
+[3.5.Show](#show)
+
+///
+
+
 
 ## <a name="the-project"></a>1.The project
 
@@ -37,9 +51,11 @@ The aim of this project is to create a simple social media platform where users 
 
 BookApp is developed with a Node.js runtime environment. The data is stored in a MongoDB database, connected to Node.js via Mongoose and hosted by MongoDB Atlas. The server is managed with Express.js.
 
-The dinamic views are written with EJS templating language. The frontend dasign mainly relies on Bootstrap v5.2, in addition to some CSS custom styles.
+The dinamic views are written with EJS templating language. The frontend design mainly relies on Bootstrap v5.2, in addition to some CSS custom styles.
 
 Register and Login functionalities, as well as safe password handling are managed by Passport. Custom middleware controls basic authorisation. Some additional security is provided with express-mongo-sanitize and sanitize-html. Other NPM packages used are express-session, connect-flash, JOI.
+
+The webapp is deployed via Render and is fully responsive for any screen type. When the server is not being used, it can take a few seconds for it to start.
 
 
 ### <a name="models"></a>2.1.Models
@@ -112,34 +128,56 @@ The "utils" folder contains some helper files:
 - "similarity.js" contains a function that compares favourite books with unread books and returns a list of recommended books
 - "categories.js" contains a list of book categories that are used as enum for the Book model
 
-## 3.Contents:
 
-- models/ - Contains book.js and review.js mongoose models
-
-- node_modules/ - Contains npm files
-
-- public/ - Contains .css and .js static files
-
-- utils/ - Contains utils.js, with helper functions
-
-- views/ - Contains .ejs templates
-
-- index.js - Contains the main app, with the server setup
-
-- package.json / package-lock.js - Contains npm project info
-
-- seeds.js - Populates database
+## <a name="usage"></a>3.Usage
 
 
-## 4.Installation:
+This webpage provides a database of books. Unlogged users can browse book information, via the "Explore" pages. Logged users can add new books, review existing books, create personal libraries, visit other users' pages.
 
 
-## 5.Previews:
-- Index page:
-![index](https://user-images.githubusercontent.com/76016486/204314176-bf7c85b3-f7a0-4663-aafa-f3f5b05b8831.png)
+### <a name="portal"></a>3.1.Portal
 
-- Show page:
-![show](https://user-images.githubusercontent.com/76016486/204314296-8da25143-ad72-44c4-a2f5-6c166b7b7e99.png)
 
-- Edit page:
-![edit](https://user-images.githubusercontent.com/76016486/204314331-4e5ad373-a721-42ed-9557-564a32c646bf.png)
+The portal provides a few links to navigate the webapp.
+
+**Unlogged user** will see links to Login, Register, as well as Explore pages.
+
+**Logged user** will see links to Explore and Library pages.
+
+
+### <a name="auth"></a>3.2.Authentication
+
+
+The **Register** page will ask to enter a Username and a Password (to be confirmed). Usernames are unique. Password are safely handled by the backend, although it is recommended to use a unique password. At the moment, users cannot change or recover the password. The user will be automatically logged in after registration, and will be remembered by the browser for seven days.
+
+The **Login** page will ask to input Username and Password. If successful, the user will be redirected to the previous page, or to the Explore page.
+
+
+### <a name="nav"></a>3.3.Navbar
+
+
+The Navbar contains two dropdown menus: Books and User.
+
+The **Book** menu shows links to: Explore Books, Explore Authors, Explore Categories, and Add New Book (the latter only available for logged users).
+
+The **User** menu will show links to Login and Register pages to an unlogged user. If the user is logged, it will display the Username and will show links to Library and Logout.
+
+
+### <a name="explore"></a>3.4.Explore
+
+
+The **Explore** page shows the complete list of books saved in the database. Books are displayed through their cover only, which contains a link to the book page. The book list is displayed in random order, but they can also be ordered by title, year of publishing, and (soon) rating. The user can also search by title or author name.
+
+The **Explore Authors** page will render a list of the saved authors. By clicking a name, the user will be able to see all books written by that author. These books can be ordered as in the Explore page.
+
+The **Explore Categories** page will render a list of the saved categories. By clicking a category, the user will be able to see all books saved under that category. These books can be ordered as in the Explore page.
+
+
+### <a name="show"></a>3.5.Show
+
+
+The Show page will display **book information**: Title, Author, Category, Summary, Cover. It will also show a **Reviews** box, with a list of the reviews added for that book. Each review contains username, rating in stars (1 to 5) and text. It can be deleted by the review author, or by an admin.
+
+A **logged user** will be able to add the book to their own libraries. Every book can be added to the **Wishlist** (exclusively), or to the **Read Books** and **Favourite Books**. If a book is added to Favourite Books, it is also automatically added to Read Books. If a book is removed from Read Books, it will be removed from Favourite Books too. A book must be removed from the Wishlist to be added to Read/Favourite Books, and vice versa.
+
+The user who added the book to the database will also be able to **Edit** or **Delete** it. This menu is also available to admins.
