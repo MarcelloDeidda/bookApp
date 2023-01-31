@@ -4,7 +4,7 @@
 
 ///
 
-[1.Project](#the-project)
+[1.The Project](#the-project)
 
 ///
 
@@ -30,7 +30,21 @@
 
 [3.5.Show](#show)
 
+[3.6.Library](#library)
+
+[3.7.Coming Soon](#coming-soon)
+
 ///
+
+[4.Previews](#preview)
+
+[4.1.Explore Category Page](#explore-preview)
+
+[4.2.Show Page](#show-preview)
+
+[4.3.Edit Page](#edit-preview)
+
+[4.4.Library Page](#library-preview)
 
 
 
@@ -180,4 +194,59 @@ The Show page will display **book information**: Title, Author, Category, Summar
 
 A **logged user** will be able to add the book to their own libraries. Every book can be added to the **Wishlist** (exclusively), or to the **Read Books** and **Favourite Books**. If a book is added to Favourite Books, it is also automatically added to Read Books. If a book is removed from Read Books, it will be removed from Favourite Books too. A book must be removed from the Wishlist to be added to Read/Favourite Books, and vice versa.
 
-The user who added the book to the database will also be able to **Edit** or **Delete** it. This menu is also available to admins.
+The user who added the book to the database will also be able to **Edit** or **Delete** it. These funcionalities are also available to admins.
+
+
+### <a name="new-edit"></a>3.6.New/Edit Book
+
+
+The New Book and the Edit Book page are similar in content. They both are accessible only by logged users. They display a form with the following inputs:
+
+- "Title" as text input;
+
+- "Author" as text input;
+
+- "Year of publication" as number input;
+
+- "Category" as select from list - one or more elements must be selected;
+
+- "Summary" as textarea;
+
+- "Image URL" as text input;
+
+
+### <a name="library"></a>3.7.Library
+
+
+The Library page will show the personal libraries: **Read Books**, **Favourite Books**, **Wishlist** and **Recommended Books**.
+
+The Recommended Books list contains 10 books, and is based on the Favourite Books list, which must contain at least five books for this functionality to work.
+
+Each of these lists shows a preview of five books, and contains a link to the full list.
+
+
+### <a name="coming-soon"></a>3.8.Coming Soon
+
+
+This app is still under development. While all of the features listed above are currently working, there is still some work to do to allow user interactions, such as visit and follow other users' libraries and send book recommendations.
+
+Future development plans include a User Dashboard, and improved accessibility.
+
+
+## <a name="previews"></a>4.PreviewsInline-style: 
+
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+
+### <a name="explore-preview"></a>4.1.Explore Category Page
+
+
+### <a name="show-preview"></a>4.2.Show Page
+
+
+### <a name="edit-preview"></a>4.3.Edit page
+
+
+### <a name="library-preview"></a>4.4.Library Page
+
