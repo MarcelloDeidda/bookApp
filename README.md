@@ -233,20 +233,28 @@ This app is still under development. While all of the features listed above are 
 Future development plans include a User Dashboard, and improved accessibility.
 
 
-## <a name="previews"></a>4.PreviewsInline-style: 
-
-
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+## <a name="previews"></a>4.Previews
 
 
 ### <a name="explore-preview"></a>4.1.Explore Category Page
 
 
+![explore](https://user-images.githubusercontent.com/76016486/215789734-ab046c9e-b83e-4955-af94-d8467758776b.png)
+
+
 ### <a name="show-preview"></a>4.2.Show Page
+
+
+![show](https://user-images.githubusercontent.com/76016486/215789793-2e886ee0-a46a-43fc-a721-67fa5ca68036.png)
 
 
 ### <a name="edit-preview"></a>4.3.Edit page
 
 
+![edit-book](https://user-images.githubusercontent.com/76016486/215789847-0c39f42e-111b-4396-b4e3-c75721495a9a.png)
+
+
 ### <a name="library-preview"></a>4.4.Library Page
 
+
+![library](https://user-images.githubusercontent.com/76016486/215789875-d8c42ede-4b50-492c-b0ed-6abdd892422e.png)
