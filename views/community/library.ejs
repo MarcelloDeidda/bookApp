@@ -1,7 +1,19 @@
 <% layout("./layouts/boilerplate") %>
-<h1 class="display-3 text-center mb-5">
+<h1 class="display-3 text-center ">
   <%= user.username %>'s Library
 </h1>
+<% if (!currentUser.following.includes(user.id)) { %>
+<form method="POST" action="/community/<%=user.username%>/follow?_method=PATCH" class="row mt-0 mb-5">
+  <span class="text-end col-4 offset-3 display-7">Followers: <%= user.followers.length %> Following: <%= user.following.length %></span>
+  <button class="btn btn-success col-1">Follow +</button>
+</form>
+<% } else { %>
+  <form method="POST" action="/community/<%=user.username%>/unfollow?_method=PATCH" class="row mt-0 mb-5">
+    <span class="text-end col-4 offset-3 display-7">Followers: <%= user.followers.length %> Following: <%= user.following.length %></span>
+    <button class="btn btn-outline-success col-1">Unfollow</button>
+  </form>
+  <% } %>
+</div>
 <div class="row d-flex justify-content-around">
   <% if (user.readBooks.length !=0) { %>
   <a href="/community/<%=user.username%>/read" class="col-12 col-md-6 my-5 my-md-3 list-element">

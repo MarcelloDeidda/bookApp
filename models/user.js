@@ -20,6 +20,18 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Book"
         }
+    ],
+    following: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ],
+    followers: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        }
     ]
 });
 userSchema.plugin(passportLocalMongoose);

@@ -18,6 +18,12 @@ module.exports.index = async (req, res) => {
         case "yearDesc":
             bookList = books.sort((a, b) => b.year - a.year);
             break;
+        case "ratingAsc":
+            bookList = books.sort((a, b) => a.rating - b.rating);
+            break;
+        case "ratingDesc":
+            bookList = books.sort((a, b) => b.rating - a.rating);
+            break;
         default:
             bookList = books.sort((a, b) => 0.5 - Math.random());
             order = "random"
@@ -41,6 +47,12 @@ module.exports.search = async (req, res) => {
             break;
         case "yearDesc":
             bookList = books.sort((a, b) => b.year - a.year);
+            break;
+        case "ratingAsc":
+            bookList = books.sort((a, b) => a.rating - b.rating);
+            break;
+        case "ratingDesc":
+            bookList = books.sort((a, b) => b.rating - a.rating);
             break;
         default:
             bookList = books.sort((a, b) => 0.5 - Math.random());
@@ -78,6 +90,12 @@ module.exports.showAuthor = async (req, res) => {
         case "yearDesc":
             bookList = booksByAuthor.sort((a, b) => b.year - a.year);
             break;
+        case "ratingAsc":
+            bookList = books.sort((a, b) => a.rating - b.rating);
+            break;
+        case "ratingDesc":
+            bookList = books.sort((a, b) => b.rating - a.rating);
+            break;
         default:
             bookList = booksByAuthor.sort((a, b) => 0.5 - Math.random());
             order = "random"
@@ -110,6 +128,12 @@ module.exports.showCategory = async (req, res) => {
             break;
         case "yearDesc":
             bookList = booksByCategory.sort((a, b) => b.year - a.year);
+            break;
+        case "ratingAsc":
+            bookList = books.sort((a, b) => a.rating - b.rating);
+            break;
+        case "ratingDesc":
+            bookList = books.sort((a, b) => b.rating - a.rating);
             break;
         default:
             bookList = booksByCategory.sort((a, b) => 0.5 - Math.random());

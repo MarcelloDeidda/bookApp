@@ -1,2 +1,2 @@
 - Check friends' pages
-- Remove none cat
+- Add order by rating

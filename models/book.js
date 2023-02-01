@@ -29,7 +29,7 @@ const bookSchema = new Schema({
 
 bookSchema.virtual("rating").get(function () {
     if (this.reviews.length === 0) {
-        return undefined;
+        return 0;
     } else {
         let ratingTotal = 0;
         for (let review of this.reviews) {

@@ -16,4 +16,10 @@ router.route("/:username/favourite")
 router.route("/:username/wishlist")
     .get(isLoggedIn, catchAsync(communityController.showWishlist))
 
+router.route("/:username/follow")
+    .patch(isLoggedIn, catchAsync(communityController.follow))
+
+router.route("/:username/unfollow")
+    .patch(isLoggedIn, catchAsync(communityController.unfollow))
+
 module.exports = router;

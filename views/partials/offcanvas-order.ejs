@@ -10,8 +10,8 @@
         <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=title" class="btn btn-outline-light<% if (order==="title") { %> active" aria-current="page<% } %>">Title</a>
         <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=yearAsc" class="btn btn-outline-light<% if (order==="yearAsc") { %> active" aria-current="page<% } %>">Year &#8593</a>
         <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=yearDesc" class="btn btn-outline-light<% if (order==="yearDesc") { %> active" aria-current="page<% } %>">Year &#8595</a>
-        <a href="#" class="btn btn-outline-light disabled">Rating &#8593</a>
-        <a href="" class="btn btn-outline-light disabled">Rating &#8595</a>
+        <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=ratingAsc" class="btn btn-outline-light<% if (order==="ratingAsc") { %> active" aria-current="page<% } %>">Rating &#8593</a>
+        <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=ratingDesc" class="btn btn-outline-light<% if (order==="ratingDesc") { %> active" aria-current="page<% } %>">Rating &#8595</a>
       </div>
     </div>
     <div class="row" id="order-small">
@@ -24,8 +24,8 @@
         <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=yearDesc" class="col-6 btn btn-outline-light<% if (order==="yearDesc") { %> active" aria-current="page<% } %>">Year &#8595</a>
       </div>
       <div class="btn-group btn-group-sm col-12 mb-1">
-        <a href="#" class="col-6 btn btn-outline-light disabled">Rating &#8593</a>
-        <a href="" class="col-6 btn btn-outline-light disabled">Rating &#8595</a>
+        <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=ratingAsc" class="col-6 btn btn-outline-light<% if (order==="ratingAsc") { %> active" aria-current="page<% } %>">Rating &#8593</a>
+        <a href="?<% if (search) { %>search=<%=search%>&<% } %>order=ratingDesc" class="col-6 btn btn-outline-light<% if (order==="ratingDesc") { %> active" aria-current="page<% } %>">Rating &#8595</a>
       </div>
     </div>
   </div>

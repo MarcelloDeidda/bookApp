@@ -11,14 +11,7 @@
 <div class="row pt-5">
   <%for (let book of books) {%>
   <a class="btn col-6 col-md-3 border-0 my-4 hoverable" href="/books/<%=book.id%>">
-    <img src="<%= book.imgUrl %>" class="img-fluid book-image w-100 h-100" alt="">
-    <span><% for (let i = 0; i < 5; i++) {%>
-      <% if (i < book.rating) { %>
-      <span>&#9733;</span>
-      <% } else {%>
-      <span>&#9734;</span>
-      <% } %>
-      <% } %></span>
+    <img src="<%= book.imgUrl %>" class="img-fluid book-image h-100 w-100" alt="">
   </a>
   <%}%>
     </div>
