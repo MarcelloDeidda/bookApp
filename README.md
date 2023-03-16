@@ -6,7 +6,7 @@
 ## <a name="the-project"></a>1.The project
 
 
-BookApp is an online platform for book lovers an readers. It allows users to discover new books, rate and review books they've read and create personalized bookshelves.
+BookApp is an online platform for book lovers and readers. It allows users to discover new books, rate and review books they've read and create personalized bookshelves.
 
 This webapp holds a database of books and any user can contribute by uploading info about books which haven't been added yet. The app also provides some recommendations based on the user's favourite books.
 
