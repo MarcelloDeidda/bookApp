@@ -1,5 +1,5 @@
 previews/
 .env
-node_modules/
+node_modules
 utils/seeds.js
 utils/to_do_list.txt

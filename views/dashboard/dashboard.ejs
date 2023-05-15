@@ -1,0 +1,39 @@
+<% layout("./layouts/boilerplate") %>
+<h1 class="display-3 text-center mb-5"><%= `${greeting}, ${user.username}!` %></h1>
+<section class="my-5 py-4">
+  <p class="text-center fs-4 mb-5">We think you might like this book:</p>
+  <div class="row my-5">
+    <a class="link-unstyled d-flex hoverable" href="/books/<%=recommendedBooks[0].id%>">
+      <div class="col-6 d-flex justify-content-end align-items-center">
+        <img src=<%= recommendedBooks[0].imgUrl %> alt="" class="h-100 me-5">
+      </div>
+      <div class="col-6">
+        <h2 class="display-5">
+          <%=recommendedBooks[0].title%>
+        </h2>
+        <dl class="row my-5">
+          <dt class="col-sm-4">Author</dt>
+          <dd class="col-sm-8">
+            <%=recommendedBooks[0].author%>
+          </dd>
+          <dt class="col-sm-4">Summary</dt>
+          <dd class="col-sm-8">
+            <%=recommendedBooks[0].summary%>
+          </dd>
+        </dl>
+      </div>
+    </a>
+  </div>
+</section>
+<section class="my-5 py-4">
+  <p class="text-center fs-4 mb-5">Here are more recommendations based on your favourite books:</p>
+  <div class="row d-flex justify-content-around my-5">
+    <div class="col-12 d-flex px-4 library">
+      <%for (let book of recommendedBooks.slice(1, 5)) {%>
+        <a href="" class="list-unstyled"></a>
+      <img src="<%= book.imgUrl %>" class="mx-4 img-fluid dashboard-recommended-book" alt="">
+      <%}%>
+      <p>Browse ></p>
+    </div>
+</div>
+</section>

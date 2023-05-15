@@ -15,6 +15,7 @@ const methodOverride = require("method-override");
 const mongoSanitize = require("express-mongo-sanitize");
 const ExpressError = require("./utils/ExpressError")
 const bookRouter = require("./routes/books");
+const dashboardRouter = require("./routes/dashboard");
 const reviewRouter = require("./routes/reviews");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
@@ -94,6 +95,9 @@ app.set("view engine", "ejs");
 
 // Serve "auth" routes
 app.use("/auth", authRouter);
+
+// Serve "dashboard" routes
+app.use("/dashboard", dashboardRouter);
 
 // Serve "books" routes
 app.use("/books", bookRouter);
