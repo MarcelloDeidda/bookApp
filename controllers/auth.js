@@ -2,11 +2,19 @@ const User = require("../models/user");
 
 // Render register form
 module.exports.renderRegister = (req, res) => {
+    if (req.user) {
+        req.flash("error", "You are already logged in!");
+        return res.redirect(`/library/${req.user.id}`)
+    }
     res.render("auth/register");
 }
 
 // Render login form
 module.exports.renderLogin = (req, res) => {
+    if (req.user) {
+        req.flash("error", "You are already logged in!");
+        return res.redirect(`/library/${req.user.id}`)
+    }
     res.render("auth/login");
 }
 

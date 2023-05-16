@@ -1,11 +1,22 @@
 <% layout("./layouts/boilerplate") %>
 <h1 class="display-3 text-center mb-5"><%= `${greeting}, ${user.username}!` %></h1>
 <section class="my-5 py-4">
+  <p class="mx-auto w-75 <%= quote.success ? "fst-italic" : "text-center text-secondary" %> fs-5"><%= quote.quote %></p>
+  <p class="fs-6 mx-auto w-75 text-end"><%= quote.author %></p>
+  <div class="row mb-4">
+    <div class="mt-4 w-75 mx-auto col-12 btn-group" role="group">
+      <a class="col-12 col-sm-4 btn btn-outline-dark" href="/books">Explore Books</a>
+      <a class="col-12 col-sm-4 btn btn-outline-dark" href="/books/authors">Explore Authors</a>
+      <a class="col-12 col-sm-4 btn btn-outline-dark" href="/books/categories">Explore Category</a>
+    </div>
+  </div>
+</section>
+<section class="my-5 py-4">
   <p class="text-center fs-4 mb-5">We think you might like this book:</p>
   <div class="row my-5">
     <a class="link-unstyled d-flex hoverable" href="/books/<%=recommendedBooks[0].id%>">
       <div class="col-6 d-flex justify-content-end align-items-center">
-        <img src=<%= recommendedBooks[0].imgUrl %> alt="" class="h-100 me-5">
+        <img src=<%= recommendedBooks[0].imgUrl %> alt="" class="with-shadow h-100 me-5">
       </div>
       <div class="col-6">
         <h2 class="display-5">
@@ -28,12 +39,13 @@
 <section class="my-5 py-4">
   <p class="text-center fs-4 mb-5">Here are more recommendations based on your favourite books:</p>
   <div class="row d-flex justify-content-around my-5">
-    <div class="col-12 d-flex px-4 library">
+    <div class="col-12 d-flex px-4 library d-flex justify-content-around">
       <%for (let book of recommendedBooks.slice(1, 5)) {%>
-        <a href="" class="list-unstyled"></a>
-      <img src="<%= book.imgUrl %>" class="mx-4 img-fluid dashboard-recommended-book" alt="">
+      <a href="/books/<%= book.id %>" class="with-shadow hoverable mx-4 list-unstyled dashboard-recommended-book">
+        <img src="<%= book.imgUrl %>" class="img-fluid" alt="">
+      </a>
       <%}%>
-      <p>Browse ></p>
+      <a href="/library/<%= user.id %>/recommended" class="with-shadow hoverable border border-3 border-black link-secondary fs-5 mx-4 dashboard-recommended-book d-flex justify-content-center align-items-center">See all ></a>
     </div>
 </div>
 </section>
