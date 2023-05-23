@@ -28,12 +28,12 @@
       <dt class="col-sm-4">Rating</dt>
       <dd class="col-sm-8">
         <% for (let i = 0; i < 5; i++) {%>
-          <% if (i < book.rating) { %>
-          <span>&#9733;</span>
-          <% } else {%>
-          <span>&#9734;</span>
-          <% } %>
-          <% } %>
+        <% if (i < book.rating) { %>
+        <span>&#9733;</span>
+        <% } else {%>
+        <span>&#9734;</span>
+        <% } %>
+        <% } %>
       </dd>
       <dt class="col-sm-4">Summary</dt>
       <dd class="col-sm-8">
@@ -109,15 +109,10 @@
         <div class="col-12 mb-3">
           <textarea class="form-control" name="body" id="body" cols="30" rows="5" required></textarea>
         </div>
-        <div class="col-12 text-center mb-3 mx-auto fs-1">
-          <span class="stars" id="star-1">&#9734;</span>
-          <span class="stars" id="star-2">&#9734;</span>
-          <span class="stars" id="star-3">&#9734;</span>
-          <span class="stars" id="star-4">&#9734;</span>
-          <span class="stars" id="star-5">&#9734;</span>
-        </div>
         <div class="col-12 mb-3 review-rating">
           <input class="form-control" type="number" name="rating" id="rating" min="1" max="5" required>
+          <div class="col-12 text-center mb-3 mx-auto fs-1" id="stars-root">
+          </div>
         </div>
         <div class="col-12 my-2 d-grid gap-2">
           <button type="submit" class="btn btn-outline-success" id="review-submit">Add review</button>

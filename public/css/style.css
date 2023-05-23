@@ -3,6 +3,12 @@
     box-shadow: 5px 5px 5px #b0b0b0;
 }
 
+.book-container-sm {
+    object-fit: cover;
+    width: 20%;
+    height: 100%;
+}
+
 .with-shadow {
     box-shadow: 5px 5px 5px #b0b0b0;
 }
@@ -95,15 +101,14 @@
     border-color: #dc3545;
 }
 
-.review-rating {
-    display: none;
+#stars-root {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
 }
 
-.stars {
+.star {
     color: #DAA520;
-}
-
-.stars:hover {
     cursor: pointer;
 }
 

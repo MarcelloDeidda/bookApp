@@ -1,240 +1,97 @@
-// Select stars on page
-const star1 = document.getElementById("star-1");
-const star2 = document.getElementById("star-2");
-const star3 = document.getElementById("star-3");
-const star4 = document.getElementById("star-4");
-const star5 = document.getElementById("star-5");
+// Please change this constant number to modify number of stars
+const NUMBER_OF_STARS = 5;
 
-// Select rating from form
+// Selecting elements from page!
+
+// The form should contain a div with id "stars-root"
+const starsRoot = document.getElementById("stars-root");
+
+// The form should contain a number input with id "rating", and display property set to "none"
 const starRating = document.getElementById("rating");
+starRating.value = 0;
+starRating.style.display = "none";
+
+// The form should contain a submit button with id "review-submit"
 const reviewSubmit = document.getElementById("review-submit");
 
-// Stars are not clicked
-let star1Clicked = false;
-let star2Clicked = false;
-let star3Clicked = false;
-let star4Clicked = false;
-let star5Clicked = false;
+const stars = [];
+let clickedStar = false;
 
-// Star 1 mouse events
-const star1Mouseover = () => {
-    star1.innerHTML = "&#9733;";
+for (let i = 1; i <= NUMBER_OF_STARS; i++) {
+    // Creating star
+    const star = document.createElement("p");
+    star.id = `star-${i}`;
+    // A linked .css file should contain styling for the class "star", with font-size, color and other properties
+    star.className = "star";
+    star.innerHTML = "&#9734;";
+
+    // Appending star to parent element and pushing into array
+    starsRoot.appendChild(star);
+    stars.push(star);
 }
 
-const star1Mouseout = () => {
-    star1.innerHTML = "&#9734;";
-}
+// Add mouse events to stars
+stars.map(star => {
+    // When the mouse is over a star, this star is highlighted, as well as the stars on its left
+    star.addEventListener("mouseover", () => {
+        // If any of the stars has already been selected, the stars will not react to the mouse movement
+        if (!clickedStar) {
+            // Highlight the stars
+            const starIndex = stars.indexOf(star);
+            for (let i = 0; i <= starIndex; i++) {
+                stars[i].innerHTML = "&#9733;";
+            }
+        }
+    });
 
-// Star 2 mouse events
-const star2Mouseover = () => {
-    star1.innerHTML = "&#9733;";
-    star2.innerHTML = "&#9733;";
-}
+    // When the mouse points away from the star, all of the stars revert to blank
+    star.addEventListener("mouseout", () => {
+        // If any of the stars has already been selected, the stars will not react to the mouse movement
+        if (!clickedStar) {
+            // Revert to blank stars
+            for (let i = 0; i < NUMBER_OF_STARS; i++) {
+                stars[i].innerHTML = "&#9734;";
+            }
+        }
+    });
+});
 
-const star2Mouseout = () => {
-    star1.innerHTML = "&#9734;";
-    star2.innerHTML = "&#9734;";
-}
-
-// Star 3 mouse events
-const star3Mouseover = () => {
-    star1.innerHTML = "&#9733;";
-    star2.innerHTML = "&#9733;";
-    star3.innerHTML = "&#9733;";
-}
-
-const star3Mouseout = () => {
-    star1.innerHTML = "&#9734;";
-    star2.innerHTML = "&#9734;";
-    star3.innerHTML = "&#9734;";
-}
-
-// Star 4 mouse events
-const star4Mouseover = () => {
-    star1.innerHTML = "&#9733;";
-    star2.innerHTML = "&#9733;";
-    star3.innerHTML = "&#9733;";
-    star4.innerHTML = "&#9733;";
-}
-
-const star4Mouseout = () => {
-    star1.innerHTML = "&#9734;";
-    star2.innerHTML = "&#9734;";
-    star3.innerHTML = "&#9734;";
-    star4.innerHTML = "&#9734;";
-}
-
-// Star 5 mouse events
-const star5Mouseover = () => {
-    star1.innerHTML = "&#9733;";
-    star2.innerHTML = "&#9733;";
-    star3.innerHTML = "&#9733;";
-    star4.innerHTML = "&#9733;";
-    star5.innerHTML = "&#9733;";
-}
-
-const star5Mouseout = () => {
-    star1.innerHTML = "&#9734;";
-    star2.innerHTML = "&#9734;";
-    star3.innerHTML = "&#9734;";
-    star4.innerHTML = "&#9734;";
-    star5.innerHTML = "&#9734;";
-}
-
-const starAddMouseEvent = () => {
-    star1.addEventListener("mouseover", star1Mouseover);
-    star1.addEventListener("mouseout", star1Mouseout);
-
-    star2.addEventListener("mouseover", star2Mouseover);
-    star2.addEventListener("mouseout", star2Mouseout);
-
-    star3.addEventListener("mouseover", star3Mouseover);
-    star3.addEventListener("mouseout", star3Mouseout);
-
-    star4.addEventListener("mouseover", star4Mouseover);
-    star4.addEventListener("mouseout", star4Mouseout);
-
-    star5.addEventListener("mouseover", star5Mouseover);
-    star5.addEventListener("mouseout", star5Mouseout);
-}
-
-const starRemoveMouseEvent = () => {
-    star1.removeEventListener("mouseover", star1Mouseover);
-    star1.removeEventListener("mouseout", star1Mouseout);
-
-    star2.removeEventListener("mouseover", star2Mouseover);
-    star2.removeEventListener("mouseout", star2Mouseout);
-
-    star3.removeEventListener("mouseover", star3Mouseover);
-    star3.removeEventListener("mouseout", star3Mouseout);
-
-    star4.removeEventListener("mouseover", star4Mouseover);
-    star4.removeEventListener("mouseout", star4Mouseout);
-
-    star5.removeEventListener("mouseover", star5Mouseover);
-    star5.removeEventListener("mouseout", star5Mouseout);
-}
-
-starAddMouseEvent();
-
-// Star 1 click event
-star1.addEventListener("click", () => {
-    if (!star1Clicked) {
-        starRemoveMouseEvent();
-        star1Clicked = true
-        star1.innerHTML = "&#9733;";
-        star2.innerHTML = "&#9734;";
-        star3.innerHTML = "&#9734;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = 1;
-    } else {
-        starAddMouseEvent();
-        star1Clicked = false
-        star1.innerHTML = "&#9734;";
-        star2.innerHTML = "&#9734;";
-        star3.innerHTML = "&#9734;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = undefined;
-    }
-})
-
-// Star 2 click event
-star2.addEventListener("click", () => {
-    if (!star2Clicked) {
-        starRemoveMouseEvent();
-        star2Clicked = true
-        star1.innerHTML = "&#9733;";
-        star2.innerHTML = "&#9733;";
-        star3.innerHTML = "&#9734;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = 2;
-    } else {
-        starAddMouseEvent();
-        star2Clicked = false
-        star1.innerHTML = "&#9734;";
-        star2.innerHTML = "&#9734;";
-        star3.innerHTML = "&#9734;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = undefined;
-    }
-})
-
-// Star 3 click event
-star3.addEventListener("click", () => {
-    if (!star3Clicked) {
-        starRemoveMouseEvent();
-        star3Clicked = true
-        star1.innerHTML = "&#9733;";
-        star2.innerHTML = "&#9733;";
-        star3.innerHTML = "&#9733;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = 3;
-    } else {
-        starAddMouseEvent();
-        star3Clicked = false
-        star1.innerHTML = "&#9734;";
-        star2.innerHTML = "&#9734;";
-        star3.innerHTML = "&#9734;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = undefined;
-    }
-})
-
-// Star 4 click event
-star4.addEventListener("click", () => {
-    if (!star4Clicked) {
-        starRemoveMouseEvent();
-        star4Clicked = true
-        star1.innerHTML = "&#9733;";
-        star2.innerHTML = "&#9733;";
-        star3.innerHTML = "&#9733;";
-        star4.innerHTML = "&#9733;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = 4;
-    } else {
-        starAddMouseEvent();
-        star4Clicked = false
-        star1.innerHTML = "&#9734;";
-        star2.innerHTML = "&#9734;";
-        star3.innerHTML = "&#9734;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = undefined;
-    }
-})
-
-// Star 5 click event
-star5.addEventListener("click", () => {
-    if (!star5Clicked) {
-        starRemoveMouseEvent();
-        star5Clicked = true
-        star1.innerHTML = "&#9733;";
-        star2.innerHTML = "&#9733;";
-        star3.innerHTML = "&#9733;";
-        star4.innerHTML = "&#9733;";
-        star5.innerHTML = "&#9733;";
-        starRating.value = 5;
-    } else {
-        starAddMouseEvent();
-        star5Clicked = false
-        star1.innerHTML = "&#9734;";
-        star2.innerHTML = "&#9734;";
-        star3.innerHTML = "&#9734;";
-        star4.innerHTML = "&#9734;";
-        star5.innerHTML = "&#9734;";
-        starRating.value = undefined;
-    }
-})
+// Add click event to stars
+stars.map(star => {
+    star.addEventListener("click", () => {
+        // If the star hasn't been selected yet, it will be highlighted, as well as the stars on its left.
+        // If the star has been selected already, all stars will revert to blank
+        if (clickedStar !== star) {
+            // Current star is clicked
+            clickedStar = star;
+            // Set rating value to selected star number
+            const starIndex = stars.indexOf(star);
+            starRating.value = (starIndex + 1).toString();
+            // Highlight stars
+            for (let i = 0; i < NUMBER_OF_STARS; i++) {
+                if (i <= starIndex) {
+                    stars[i].innerHTML = "&#9733;";
+                } else {
+                    stars[i].innerHTML = "&#9734;";
+                }
+            }
+        } else {
+            // No star is clicked
+            clickedStar = false;
+            // Rating has no value
+            starRating.value = "0";
+            // Revert to blank stars
+            for (let i = 0; i < NUMBER_OF_STARS; i++) {
+                stars[i].innerHTML = "&#9734;";
+            }
+        }
+    })
+});
 
 // Submit button event
 reviewSubmit.addEventListener("click", (e) => {
-    if (!starRating.value) {
-        alert("Please enter a rating from 1 to 5!");
+    if (starRating.value === "0") {
+        e.preventDefault();
+        alert(`Please enter a rating from 1 to ${NUMBER_OF_STARS}!`);
     }
-})
+});
